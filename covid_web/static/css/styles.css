@@ -1,0 +1,112 @@
+`html {
+  font-size: 10px;
+  background-color: #40687a;
+}
+
+body {
+  width: 70%;
+  min-width: 800px;
+}
+
+h1,
+h2,
+h3 {
+  color: #000000;
+}
+
+p,
+input,
+li {
+  color: #000000;
+}
+
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  flex: 5;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 2rem;
+}
+input {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+input[type="submit"], button{
+  font-size: 1rem;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+p,
+form,
+li {
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+/* header bar */
+
+header {
+  margin-bottom: 10px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+main,
+header,
+nav,
+article,
+aside,
+footer,
+section {
+  background-color: rgba(170, 220, 240, 0.5);
+  padding: 1%;
+}
+
+/* nav bar */
+nav {
+  height: 50px;
+  flex: 100%;
+  display: flex;
+}
+
+nav ul {
+  padding: 0;
+  list-style-type: none;
+  flex: 2;
+  display: flex;
+}
+
+nav li {
+  display: inline;
+  text-align: center;
+  flex: 1;
+}
+
+nav a,
+nav span {
+  display: inline-block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: black;
+}
+
+/* foot bar */
+footer {
+  margin-top: 5px;
+}
