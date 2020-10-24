@@ -1,19 +1,13 @@
-`html {
+html {
+  overflow: hidden;
   font-size: 10px;
   background-color: #40687a;
 }
 
-body {
-  width: 70%;
-  min-width: 800px;
-}
 
 h1,
 h2,
-h3 {
-  color: #000000;
-}
-
+h3,
 p,
 input,
 li {
@@ -58,8 +52,11 @@ li {
   line-height: 1.5;
 }
 
-/* header bar */
+main {
+  text-align: center;
+}
 
+/* header bar */
 header {
   margin-bottom: 10px;
   display: flex;
@@ -73,6 +70,8 @@ article,
 aside,
 footer,
 section {
+  max-width: 100%;
+  margin: auto;
   background-color: rgba(170, 220, 240, 0.5);
   padding: 1%;
 }
@@ -82,6 +81,10 @@ nav {
   height: 50px;
   flex: 100%;
   display: flex;
+}
+
+nav a:hover{
+  font-weight: bold;
 }
 
 nav ul {
