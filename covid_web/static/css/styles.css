@@ -1,9 +1,8 @@
 html {
   overflow: hidden;
-  font-size: 10px;
+  font-size: 15px;
   background-color: #40687a;
 }
-
 
 h1,
 h2,
@@ -15,34 +14,19 @@ li {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 2rem;
   text-align: center;
   flex: 5;
   text-transform: uppercase;
 }
 
 h2 {
-  font-size: 3rem;
+  font-size: 2rem;
   text-align: center;
 }
 
 h3 {
-  font-size: 2rem;
-}
-input {
   font-size: 1rem;
-  line-height: 1;
-}
-
-input[type="submit"], button{
-  font-size: 1rem;
-  background-color: #4caf50;
-  border: none;
-  color: white;
-  padding: 16px 32px;
-  text-decoration: none;
-  margin: 4px 2px;
-  cursor: pointer;
 }
 
 p,
@@ -53,6 +37,7 @@ li {
 }
 
 main {
+  font-size: 1.5rem;
   text-align: center;
 }
 
@@ -67,30 +52,45 @@ main,
 header,
 nav,
 article,
-aside,
-footer,
-section {
-  max-width: 100%;
+footer {
   margin: auto;
   background-color: rgba(170, 220, 240, 0.5);
   padding: 1%;
 }
 
-/* nav bar */
+label {
+  font-size: 1.5rem;
+}
+
+input {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+input[type="submit"], button{
+  font-size: 1rem;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  font-weight: bold;
+}
+
 nav {
   height: 50px;
   flex: 100%;
   display: flex;
 }
 
-nav a:hover{
-  font-weight: bold;
-}
-
 nav ul {
-  padding: 0;
   list-style-type: none;
-  flex: 2;
+  flex: 1;
   display: flex;
 }
 
@@ -103,13 +103,20 @@ nav li {
 nav a,
 nav span {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   text-decoration: none;
   color: black;
 }
 
-/* foot bar */
+nav a:hover{
+  font-weight: bold;
+}
+
 footer {
   margin-top: 5px;
+}
+
+footer p{
+  font-size: 1.25rem;
 }
