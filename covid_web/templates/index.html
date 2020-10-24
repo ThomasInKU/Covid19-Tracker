@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Covid19-Tracker</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Covid19-Tracker</h1>
+      <nav>
+        <ul>
+          <li><span>Home</span></li>
+          <li><a href="#">Find Area</a></li>
+          <li><a href="#">More Info</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <h2>Welcome to Covid19-Tracker</h2>
+
+        <form action="/detail/" method="post">
+          <label for="email">Email: </label><br>
+          <input
+            id="email"
+            type="email"
+            name="email_field"
+          /><br>
+          <label for="password">Password: </label><br>
+          <input
+            id="password"
+            type="password"
+            name="password_field"
+          /><br><br>
+          <input type="submit" value="OK" />
+        </form>
+
+        <p><a href="#">Don't have any account?</a></p>
+      </article>
+    </main>
+
+    <footer>
+      <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
+    </footer>
+  </body>
+</html>
