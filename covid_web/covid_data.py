@@ -7,11 +7,11 @@ class CovidData:
     def select_url(self, data_type):
         if data_type == "totalconfirm":
             return "https://covid.ourworldindata.org/data/ecdc/total_cases.csv"
-        if data_type == "totaldeaths":
+        elif data_type == "totaldeaths":
             return "https://covid.ourworldindata.org/data/ecdc/total_deaths.csv"
-        if data_type == "newconfirm":
+        elif data_type == "newconfirm":
             return "https://covid.ourworldindata.org/data/ecdc/new_cases.csv"
-        if data_type == "newdeaths":
+        elif data_type == "newdeaths":
             return "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv"
         
 
