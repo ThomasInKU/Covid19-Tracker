@@ -19,5 +19,6 @@ def detail(request):
     }
     return render(request, 'detail.html', context=context)
 
+
 def register(request):
     return render(request, 'register.html')
