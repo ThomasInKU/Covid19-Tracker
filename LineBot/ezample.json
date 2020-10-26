@@ -1,0 +1,13 @@
+{
+    events: [
+      {
+        type: 'message',
+        replyToken: 'bf3d1ba6d7f5475e88e55e806766e4fa',
+        source: [Object],
+        timestamp: 1603692437926,
+        mode: 'active',
+        message: [Object]
+      }
+    ],
+    destination: 'Uf3c53bc87e5b6347b8a8222008145231'
+}
