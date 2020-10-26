@@ -31,20 +31,30 @@ class CovidData:
                 arr.append(row)
         return arr
     
-    def today_total_confirm_data(self, country, data_type):
-        print(f'len = {len(self.total_case[0])}')
-        for i in range(len(self.total_case[0])):
-            if self.total_case[0][i] == country:
+    def get_country_data(self, arr, country):
+        for i in range(len(arr[0])):
+            if arr[0][i] == country:
                 country_index = i
-        return self.total_case[len(self.total_case)-1][country_index]
+        return arr[len(arr)-1][country_index]
+        
+    def today_total_confirm_data(self, country):
+        return self.get_country_data(self.total_case, country)
     
+    def today_total_deaths_data(self, country):
+        return self.get_country_data(self.total_deaths, country)
+    
+    def today_new_confirm_data(self, country):
+        return self.get_country_data(self.new_case, country)
+    
+    def today_new_deaths_data(self, country):
+        return self.get_country_data(self.new_deaths, country)
 
-# gd = CovidData()
-# start = time.time()
-# print(gd.today_total_confirm_data("World","totalconfirm"))
-# stop = time.time()
-# print(f'time1 = {stop-start}')
-# start = time.time()
-# print(gd.today_total_confirm_data("World","totalconfirm"))
-# stop = time.time()
-# print(f'time2 = {stop-start}')
+gd = CovidData()
+time1 = time.time()
+print(gd.today_total_confirm_data("World"))
+time2 = time.time()
+print(time2-time1)
+time1 = time.time()
+print(gd.today_total_confirm_data("Thailand"))
+time2 = time.time()
+print(time2-time1)
