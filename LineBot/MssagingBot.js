@@ -1,67 +1,42 @@
-function doPost(e) {
-  
-    Logger.log("Hello from BetterLog :)");
-  
-    var requestJSON = e.postData.contents;
-    Logger.log(requestJSON);
-    
-    var requestObj = JSON.parse(requestJSON).events[0];
-    var userMessage = requestObj.message.text;
-    Logger.log(userMessage);
-    
-    var token = requestObj.replyToken;
-    var replyText = "unsuccess";
-    
-    // Copy userMessage to Message Array
-    var message_Array = userMessage.split(",");
-    
-    if(userMessage === "admin"){
-    //   Logger.log
+const express = require('express')
+const bodyParser = require('body-parser')
+const request = require('request')
+const app = express()
+// const port = process.env.PORT || 5000
+// const functions = require("firebase-functions")
+// export.LineBot = functions.https.onRequest((req,res) => {
+//   res.send("hello world");
+// });
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+app.post('/webhook', (req, res) => {
+    let reply_token = req.body.events[0].replyToken
+    console.log(req.body);
+    reply(reply_token)
+    res.sendStatus(200)
+})
+app.listen(5000)
+function reply(reply_token) {
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer mxTbtvHPryhqG+u/VERR9uHe29UQbPdqonkX8QTfZjBAQii7ul7g5Ks/OBuyWSnOgsbE1JviwYrHv4816RLNbr3XyIBOeUh5GJPdswBMlu5ewAYNtK3Fz5sXhD0vJvLV9dZ688FL+sj+LZeJR2KCLQdB04t89/1O/w1cDnyilFU='
     }
-    
-    else if(userMessage === "help"){
-      replyText = "contact me at FB: Puvana Swatvanith";
-    }
-    
-  //  ss.appendRow(["Test1", "Test2"]);
-    if (requestObj.message.type === "text") {
-    
-      replyMessage(token, replyText);
-      
-    }
+    let body = JSON.stringify({
+        replyToken: reply_token,
+        messages: [{
+            type: 'text',
+            text: 'Hello'
+        },
+        {
+            type: 'text',
+            text: 'How are you?'
+        }]
+    })
+    request.post({
+        url: 'https://api.line.me/v2/bot/message/reply',
+        headers: headers,
+        body: body
+    }, (err, res, body) => {
+        console.log('status = ' + res.statusCode);
+    });
 }
-
-function replyMessage(token, replyText) {
-    var url = "https://api.line.me/v2/bot/message/reply";
-    var lineHeader = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer xv5fNQob97Bf2zKSyXL5eWEGOWPsUMVHEkxm4axrlU1L4WMVl9d9rRaLtkuZCzHvTu353GGzdspNX6YEheEpH/7u58/Mh38qMnfLBFkKLdmuRNYttrfUQoU8XxuQpfsxpUvSFc9AuVRZQ/lVJmW7rQdB04t89/1O/w1cDnyilFU="
-    };
-  
-    var postData = {
-      "replyToken" : token,
-      "messages" : [{
-        "type" : "text",
-        "text" : replyText
-      }]
-    };
-  
-    var options = {
-      "method" : "POST",
-      "headers" : lineHeader,
-      "payload" : JSON.stringify(postData)
-    };
-  
-    try {
-      var response = UrlFetchApp.fetch(url, options);
-    }
-    
-    catch (error) {
-      Logger.log(error.name + "：" + error.message);
-      return;
-    }
-      
-    if (response.getResponseCode() === 200) {
-      Logger.log("Sending message completed.");
-    }
-  }
