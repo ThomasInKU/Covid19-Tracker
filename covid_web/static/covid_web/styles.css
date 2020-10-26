@@ -70,6 +70,7 @@ footer {
 }
 
 main {
+  display: flex;
   background-color: white;
 }
 
@@ -128,6 +129,22 @@ nav a:hover{
   transition: all 0.1s ease-in;
 }
 
+article,section {
+  flex: 1;
+}
+
+aside {
+  flex: 1;
+  margin-left: 10rem;
+  padding: 1%;
+}
+
+aside p {
+  text-align: center;
+  font-weight: bold;
+  color: #505050;
+}
+
 footer {
   background-color: rgb(243, 139, 144);
   margin-top: 5px;
@@ -136,4 +153,17 @@ footer {
 footer p{
   color: #ffffff;
   font-size: 1.25rem;
+}
+
+.textbox {
+  color: #505050;
+  text-align: left;
+  width:500px;
+  height:100px;
+  margin: 1rem;
+}
+
+.textbox img { 
+  width:50px;
+  height:50px; 
 }
