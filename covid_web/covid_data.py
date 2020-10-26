@@ -1,16 +1,16 @@
 import requests
 from contextlib import closing
 import csv
+import time
 
 class CovidData:
     
     def __init__(self):
         self.current_country = ""
-        self.covid_data = []
-        self.total_case = []
-        self.total_deaths = []
-        self.new_case = []
-        self.new_deaths = []
+        self.total_case = self.get_data("totalconfirm")
+        self.total_deaths = self.get_data("totaldeaths")
+        self.new_case = self.get_data("newconfirm")
+        self.new_deaths = self.get_data("newdeaths")
     
     def select_url(self, data_type):
         if data_type == "totalconfirm":
@@ -22,20 +22,29 @@ class CovidData:
         elif data_type == "newdeaths":
             return "https://covid.ourworldindata.org/data/ecdc/new_deaths.csv"
         
-
-    def today_data(self, country, data_type):
+    def get_data(self, data_type):
         arr = []
-        if len(self.covid_data) == 0:
-            with closing(requests.get(self.select_url(data_type), stream=True)) as r:
-                f = (line.decode('utf-8') for line in r.iter_lines())
-                reader = csv.reader(f, delimiter=',', quotechar='"')
-                for row in reader:
-                    arr.append(row)
-        self.covid_data = arr
-        for i in range(len(self.covid_data[0])):
-            if arr[0][i] == country:
+        with closing(requests.get(self.select_url(data_type), stream=True)) as r:
+            f = (line.decode('utf-8') for line in r.iter_lines())
+            reader = csv.reader(f, delimiter=',', quotechar='"')
+            for row in reader:
+                arr.append(row)
+        return arr
+    
+    def today_total_confirm_data(self, country, data_type):
+        print(f'len = {len(self.total_case[0])}')
+        for i in range(len(self.total_case[0])):
+            if self.total_case[0][i] == country:
                 country_index = i
-        return arr[len(arr)-1][country_index]
+        return self.total_case[len(self.total_case)-1][country_index]
+    
 
-gd = CovidData()
-print(gd.today_data("World","totalconfirm"))
+# gd = CovidData()
+# start = time.time()
+# print(gd.today_total_confirm_data("World","totalconfirm"))
+# stop = time.time()
+# print(f'time1 = {stop-start}')
+# start = time.time()
+# print(gd.today_total_confirm_data("World","totalconfirm"))
+# stop = time.time()
+# print(f'time2 = {stop-start}')
