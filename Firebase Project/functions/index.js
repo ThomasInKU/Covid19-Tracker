@@ -11,7 +11,7 @@ exports.webhook = functions.https.onRequest(async(req, res) => {
     var payload
     
     if(requester.overview_command(input_text)){
-        out_text = input_text + " today cases in Thailand: " + await requester.today_api(input_text) + " Persons.";
+        out_text = input_text + " cases in Thailand: " + await requester.today_api(input_text) + " Persons.";
         payload = requester.payload_in_text(out_text)
     }else if(requester.province(input_text)){
         out_text = input_text + ", Thailand total cases: " + await requester.today_api2(input_text) + " Persons.";
