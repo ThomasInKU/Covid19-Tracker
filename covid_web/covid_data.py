@@ -2,6 +2,7 @@ import requests
 from contextlib import closing
 import csv
 import time
+import pandas as pd
 
 class CovidData:
     
@@ -27,14 +28,14 @@ class CovidData:
         with closing(requests.get(self.select_url(data_type), stream=True)) as r:
             f = (line.decode('utf-8') for line in r.iter_lines())
             reader = csv.reader(f, delimiter=',', quotechar='"')
-            for row in reader:
-                arr.append(row)
+            arr = list(reader)
         return arr
     
     def get_country_data(self, arr, country):
         for i in range(len(arr[0])):
             if arr[0][i] == country:
                 country_index = i
+                break
         return arr[len(arr)-1][country_index]
         
     def today_total_confirm_data(self, country):
@@ -50,11 +51,7 @@ class CovidData:
         return self.get_country_data(self.new_deaths, country)
 
 gd = CovidData()
-time1 = time.time()
-print(gd.today_total_confirm_data("World"))
-time2 = time.time()
-print(time2-time1)
-time1 = time.time()
 print(gd.today_total_confirm_data("Thailand"))
-time2 = time.time()
-print(time2-time1)
+print(gd.today_total_deaths_data("Thailand"))
+print(gd.today_new_confirm_data("Thailand"))
+print(gd.today_new_deaths_data("Thailand"))
