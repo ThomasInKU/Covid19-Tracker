@@ -14,6 +14,38 @@ module.exports = {
         const response_json = JSON.parse(response);
         return response_json.Province[key_index];
     },
+    world_api: async function(key_index){
+        const response = await request.get("https://corona.lmao.ninja/v2/all")
+        const response_json = JSON.parse(response)
+        const key_in = key_index.slice(6);
+        return response_json[key_in];
+    },
+    world_command: function(key_index){
+        var world_command_array = [
+            "World updated",
+            "World cases",
+            "World todayCases",
+            "World deaths",
+            "World todayDeaths",
+            "World recovered",
+            "World todayRecovered",
+            "World active",
+            "World critical",
+            "World casesPerOneMillion",
+            "World deathsPerOneMillion",
+            "World tests",
+            "World testsPerOneMillion",
+            "World population",
+            "World oneCasePerPeople",
+            "World oneDeathPerPeople",
+            "World oneTestPerPeople",
+            "World activePerOneMillion",
+            "World recoveredPerOneMillion",
+            "World criticalPerOneMillion",
+            "World affectedCountries"
+        ]
+        return world_command_array.includes(key_index)
+    },
     overview_command: function(key_index){
         var overview_array = ["Confirmed", "Recovered", "Hospitalized", "Deaths", "NewConfirmed", "NewRecovered", "NewHospitalized", "NewDeaths"]
         return overview_array.includes(key_index)
