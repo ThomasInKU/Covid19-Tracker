@@ -4,6 +4,44 @@ module.exports = {
     test: function(){
         return "Hello";
     },
+    payload_in_text: function(key_index){
+        var payload = [
+            {
+              type: "text",
+              text: key_index,
+            }
+        ]
+        return payload
+    },
+    payload_collaborator: function(key_index){
+        var payload = [
+            {
+                type: "text",
+                text: key_index,
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/lisbono2001.jpg",
+                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/lisbono2001.jpg",
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Noboomta.jpg",
+                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Noboomta.jpg",
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Bhatara007.jpg",
+                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Bhatara007.jpg",
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/toey10112.jpg",
+                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/toey10112.jpg",
+            }
+        ]
+        return payload
+    },
     today_api: async function(key_index){
         const response = await request.get("https://covid19.th-stat.com/api/open/today")
         const response_json = JSON.parse(response);
