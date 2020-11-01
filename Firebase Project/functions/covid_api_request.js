@@ -21,23 +21,19 @@ module.exports = {
             },
             {
                 "type": "image",
-                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/lisbono2001.jpg",
-                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/lisbono2001.jpg",
+                "originalContentUrl": "https://avatars3.githubusercontent.com/u/58279552?s=400&u=3c903ea892ac60dc6cf0cc38ad1e42e7729da2df&v=4",
             },
             {
                 "type": "image",
-                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Noboomta.jpg",
-                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Noboomta.jpg",
+                "originalContentUrl": "https://avatars3.githubusercontent.com/u/53256241?s=400&u=f7f0ac9fe9ec2e8bc4ed9de44c27fafc0f2492fc&v=4",
             },
             {
                 "type": "image",
-                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Bhatara007.jpg",
-                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/Bhatara007.jpg",
+                "originalContentUrl": "https://avatars0.githubusercontent.com/u/59830751?s=400&u=85306431e5f8267eebb283d20205e2650bc99c68&v=4",
             },
             {
                 "type": "image",
-                "originalContentUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/toey10112.jpg",
-                "previewImageUrl": "https://github.com/lisbono2001/Covid19-Tracker/blob/master/Picture/toey10112.jpg",
+                "originalContentUrl": "https://avatars2.githubusercontent.com/u/58396402?s=400&u=cd900acf499696a5bbe67b66b1d31c8e9f975754&v=4",
             }
         ]
         return payload
