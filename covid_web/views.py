@@ -8,10 +8,10 @@ from covid_web.models import UserInfo
 def index(request):
     cd = CovidData()
     context = {
-        'totalconfirm': cd.today_total_confirm_data("World","totalconfirm"),
-        'newconfirm': cd.today_total_confirm_data("World","newconfirm"),
-        'totaldeaths': cd.today_total_confirm_data("World","totaldeaths"),
-        'newdeaths': cd.today_total_confirm_data("World","newdeaths")
+        'totalconfirm': cd.today_total_data("cases"),
+        'newconfirm': cd.today_total_data("todayCases"),
+        'totaldeaths': cd.today_total_data("deaths"),
+        'newdeaths': cd.today_total_data("todayDeaths")
     }
     return render(request, 'index.html', context=context)
 
