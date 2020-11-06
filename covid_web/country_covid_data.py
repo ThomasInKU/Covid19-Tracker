@@ -5,10 +5,9 @@ import csv
 import time
 import pandas as pd
 
-class CovidData:
+class CountryCovidData:
     
-    country = {"Zimbabwe": 0, 
-                "Zambia": 1, 
+    country = {"Zimbabwe": 0, "Zambia": 1, 
                 "Yemen": 2, 
                 "Western Sahara": 3, 
                 "Wallis and Futuna": 4, 
@@ -160,8 +159,7 @@ class CovidData:
                 "Faroe Islands": 150, 
                 "Falkland Islands (Malvinas)": 151, 
                 "Ethiopia": 152, 
-                "Estonia": 153, 
-                "Eritrea": 154, 
+                "Estonia": 153, "Eritrea": 154, 
                 "Equatorial Guinea": 155, 
                 "El Salvador": 156, 
                 "Egypt": 157, 
@@ -203,8 +201,7 @@ class CovidData:
                 "Bosnia": 193, 
                 "Bolivia": 194, 
                 "Bhutan": 195, 
-                "Bermuda": 196, 
-                "Benin": 197, 
+                "Bermuda": 196, "Benin": 197, 
                 "Belize": 198, 
                 "Belgium": 199, 
                 "Belarus": 200, 
@@ -228,12 +225,6 @@ class CovidData:
 
     def __init__(self):
         self.world_today = self.get_data("world")
-        
-    def get_url(self, typee):
-        if typee == "world":
-            return "https://corona.lmao.ninja/v2/all"
-        elif typee == "country":
-            return "https://corona.lmao.ninja/v2/countries?sort=country"
     
     def get_result(self, case, country):
         if(self.country_name_isvalid(country)):
@@ -243,12 +234,10 @@ class CovidData:
         else:
             return "no command"
         
-    def get_data(self, typee):
-        response = requests.get(self.get_url(typee)) 
+    def get_data(self):
+        country_covid_api = "https://corona.lmao.ninja/v2/countries?sort=country"
+        response = requests.get(country_covid_api) 
         return response.json()
-        
-    def today_world_total_data(self, case):
-        return self.world_today[case]
 
     def find_country_code(self, country_name):
         return self.country[country_name]
@@ -259,6 +248,3 @@ class CovidData:
         else:
             return False
 
-
-cd = CovidData()
-print(cd.get_result("active", "Zimbabwe"))
