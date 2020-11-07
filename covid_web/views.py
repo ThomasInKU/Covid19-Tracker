@@ -1,17 +1,32 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from covid_web.covid_data import CovidData
+from covid_web.covid_data import CountryCovidData, WorldCovidData
 from covid_web.models import UserInfo
 
 
 def index(request):
-    cd = CovidData()
+    cd = WorldCovidData()
     context = {
-        'totalconfirm': cd.today_total_confirm_data("World","totalconfirm"),
-        'newconfirm': cd.today_total_confirm_data("World","newconfirm"),
-        'totaldeaths': cd.today_total_confirm_data("World","totaldeaths"),
-        'newdeaths': cd.today_total_confirm_data("World","newdeaths")
+        'totalconfirm': cd.get_result("cases"),
+        'newconfirm': cd.get_result("todayCases"),
+        'totaldeaths': cd.get_result("deaths"),
+        'newdeaths': cd.get_result("todayDeaths")
+    }
+    return render(request, 'index.html', context=context)
+
+def details(request):
+    cd = CountryCovidData()
+    country = ""
+    context = {
+        'totalconfirm': cd.get_result("cases", country),
+        'newconfirm': cd.get_result("todayCases", country),
+        'totaldeaths': cd.get_result("deaths", country),
+        'newdeaths': cd.get_result("todayDeaths", country),
+        'totalconfirm': cd.get_result("", country),
+        'newconfirm': cd.get_result("todayCases", country),
+        'totaldeaths': cd.get_result("deaths", country),
+        'newdeaths': cd.get_result("todayDeaths", country)
     }
     return render(request, 'index.html', context=context)
 

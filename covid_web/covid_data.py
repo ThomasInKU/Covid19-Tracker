@@ -265,6 +265,7 @@ class WorldCovidData:
         response = requests.get(world_covid_api) 
         return response.json()
         
-    def today_world_total_data(self, case):
+    def get_result(self, case):
         return self.world_today[case]
 
+cd = CountryCovidData()
