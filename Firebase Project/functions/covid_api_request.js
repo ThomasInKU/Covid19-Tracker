@@ -4,63 +4,6 @@ module.exports = {
     test: function(){
         return "Hello";
     },
-    payload_in_text: function(key_index){
-        var payload = [
-            {
-              type: "text",
-              text: key_index,
-            }
-        ]
-        return payload
-    },
-    payload_help: function(){
-        var payload = [
-            {
-                type: "text",
-                text: "Google Doc: https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing",
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://drive.google.com/uc?id=1H-Mhqx2q1N53uT1xGV1VubOmbZQfRIxc",
-                "previewImageUrl": "https://drive.google.com/uc?id=1H-Mhqx2q1N53uT1xGV1VubOmbZQfRIxc",
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://drive.google.com/uc?id=19KwDgIIkL-2A57258hP3XwLKIbsKTgNq",
-                "previewImageUrl": "https://drive.google.com/uc?id=19KwDgIIkL-2A57258hP3XwLKIbsKTgNq",
-            },
-        ]
-        return payload
-    },
-    payload_collaborator: function(key_index){
-        var payload = [
-            {
-                type: "text",
-                text: key_index,
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://avatars3.githubusercontent.com/u/58279552?s=400&u=3c903ea892ac60dc6cf0cc38ad1e42e7729da2df&v=4",
-                "previewImageUrl": "https://avatars3.githubusercontent.com/u/58279552?s=400&u=3c903ea892ac60dc6cf0cc38ad1e42e7729da2df&v=4",
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://avatars3.githubusercontent.com/u/53256241?s=400&u=f7f0ac9fe9ec2e8bc4ed9de44c27fafc0f2492fc&v=4",
-                "previewImageUrl": "https://avatars3.githubusercontent.com/u/53256241?s=400&u=f7f0ac9fe9ec2e8bc4ed9de44c27fafc0f2492fc&v=4",
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://avatars0.githubusercontent.com/u/59830751?s=400&u=85306431e5f8267eebb283d20205e2650bc99c68&v=4",
-                "previewImageUrl": "https://avatars0.githubusercontent.com/u/59830751?s=400&u=85306431e5f8267eebb283d20205e2650bc99c68&v=4",
-            },
-            {
-                "type": "image",
-                "originalContentUrl": "https://avatars2.githubusercontent.com/u/58396402?s=400&u=cd900acf499696a5bbe67b66b1d31c8e9f975754&v=4",
-                "previewImageUrl": "https://avatars2.githubusercontent.com/u/58396402?s=400&u=cd900acf499696a5bbe67b66b1d31c8e9f975754&v=4",
-            }
-        ]
-        return payload
-    },
     today_api: async function(key_index){
         const response = await request.get("https://covid19.th-stat.com/api/open/today")
         const response_json = JSON.parse(response);
