@@ -13,6 +13,382 @@ module.exports = {
         ]
         return payload
     },
+    flex_world: async function(key_index){
+        var day = new Date().toDateString();
+        var cases = await this.world_api(key_index)
+        console.log(cases);
+        var payload = [
+            {
+                type: "flex",
+                altText: "World status",
+                contents:{
+                    "type": "bubble",
+                    "header": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "image",
+                          "url": "https://drive.google.com/uc?id=1KXtlSCHhqkP_dS8N-cTm7xzjWJhm6Iq_",
+                          "align": "start"
+                        },
+                        {
+                          "type": "text",
+                          "text": "World",
+                          "align": "center",
+                          "gravity": "center",
+                          "size": "25px",
+                          "weight": "bold",
+                          "style": "normal"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": "World status",
+                          "size": "xl",
+                          "weight": "bold"
+                        },
+                        {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Type",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": key_index,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Cases",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": cases.toString(),
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Time",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": day,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            }
+                          ],
+                          "margin": "md"
+                        }
+                      ]
+                    }
+                  }
+            }
+        ]
+        return payload
+    },
+    flex_province: async function(province_name){
+        var day = new Date().toDateString();
+        var cases = await this.today_api2(province_name);
+        console.log(cases);
+        var payload = [
+            {
+                type: "flex",
+                altText: "Thailand Province status",
+                contents: {
+                    "type": "bubble",
+                    "header": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "image",
+                          "url": "https://drive.google.com/uc?id=1Ovl5O6hfv4XkXPZMtlSO64uULLakGhdM",
+                          "align": "start"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Thailand",
+                          "align": "center",
+                          "gravity": "center",
+                          "size": "25px",
+                          "weight": "bold",
+                          "style": "normal"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": province_name,
+                          "size": "xl",
+                          "weight": "bold"
+                        },
+                        {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Province",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": province_name,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Cases",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": cases.toString(),
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Time",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": day,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            }
+                          ],
+                          "margin": "md"
+                        }
+                      ]
+                    }
+                  }
+            }
+        ]
+        return payload
+    },
+    flex_thailand: async function(type){
+        var day = new Date().toDateString();
+        var cases = await this.today_api(type);
+        console.log(cases);
+        var payload = [
+            {
+                type: "flex",
+                altText: "Thailand status",
+                contents: {
+                    "type": "bubble",
+                    "header": {
+                      "type": "box",
+                      "layout": "horizontal",
+                      "contents": [
+                        {
+                          "type": "image",
+                          "url": "https://drive.google.com/uc?id=1_2XpnbCb72wKbZCLkkNW8iXWFvSRnaAg",
+                          "align": "start"
+                        },
+                        {
+                          "type": "text",
+                          "text": "Thailand",
+                          "align": "center",
+                          "gravity": "center",
+                          "size": "25px",
+                          "weight": "bold",
+                          "style": "normal"
+                        }
+                      ]
+                    },
+                    "body": {
+                      "type": "box",
+                      "layout": "vertical",
+                      "contents": [
+                        {
+                          "type": "text",
+                          "text": type,
+                          "size": "xl",
+                          "weight": "bold"
+                        },
+                        {
+                          "type": "box",
+                          "layout": "vertical",
+                          "contents": [
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Type",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": type,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Cases",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": cases.toString(),
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            },
+                            {
+                              "type": "box",
+                              "layout": "baseline",
+                              "contents": [
+                                {
+                                  "type": "text",
+                                  "text": "Time",
+                                  "flex": 2,
+                                  "size": "sm",
+                                  "color": "#aaaaaa",
+                                  "wrap": true
+                                },
+                                {
+                                  "type": "text",
+                                  "text": day,
+                                  "flex": 5,
+                                  "color": "#666666",
+                                  "size": "sm",
+                                  "wrap": true
+                                }
+                              ]
+                            }
+                          ],
+                          "margin": "md"
+                        }
+                      ]
+                    }
+                  }
+            }
+        ]
+        return payload
+    },
+    today_api: async function(key_index){
+        const response = await request.get("https://covid19.th-stat.com/api/open/today")
+        const response_json = JSON.parse(response);
+        return response_json[key_index];
+    },
+    today_api2: async function(key_index){
+        const response = await request.get("https://covid19.th-stat.com/api/open/cases/sum")
+        const response_json = JSON.parse(response);
+        return response_json.Province[key_index];
+    },
+    world_api: async function(key_index){
+        const response = await request.get("https://corona.lmao.ninja/v2/all")
+        const response_json = JSON.parse(response)
+        const key_in = key_index.slice(6);
+        return response_json[key_in];
+    },
     payload_help: function(){
         var payload = [
             {
@@ -60,22 +436,6 @@ module.exports = {
             }
         ]
         return payload
-    },
-    today_api: async function(key_index){
-        const response = await request.get("https://covid19.th-stat.com/api/open/today")
-        const response_json = JSON.parse(response);
-        return response_json[key_index];
-    },
-    today_api2: async function(key_index){
-        const response = await request.get("https://covid19.th-stat.com/api/open/cases/sum")
-        const response_json = JSON.parse(response);
-        return response_json.Province[key_index];
-    },
-    world_api: async function(key_index){
-        const response = await request.get("https://corona.lmao.ninja/v2/all")
-        const response_json = JSON.parse(response)
-        const key_in = key_index.slice(6);
-        return response_json[key_in];
     },
     world_command: function(key_index){
         var world_command_array = [

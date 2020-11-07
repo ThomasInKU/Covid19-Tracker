@@ -11,15 +11,18 @@ exports.webhook = functions.https.onRequest(async(req, res) => {
     var payload
     
     if(requester.overview_command(input_text)){
-        out_text = input_text + " cases in Thailand: " + await requester.today_api(input_text) + " Persons.";
-        payload = requester.payload_in_text(out_text)
+        // out_text = input_text + " cases in Thailand: " + await requester.today_api(input_text) + " Persons.";
+        // payload = requester.payload_in_text(out_text)
+        payload = await requester.flex_thailand(input_text)
     }else if(requester.province(input_text)){
-        out_text = input_text + ", Thailand total cases: " + await requester.today_api2(input_text) + " Persons.";
-        payload = requester.payload_in_text(out_text)
+        // out_text = input_text + ", Thailand total cases: " + await requester.today_api2(input_text) + " Persons.";
+        // payload = requester.payload_in_text(out_text)
+        payload = await requester.flex_province(input_text)
     }
     else if(requester.world_command(input_text)){
-        out_text = input_text + ": " + await requester.world_api(input_text) + " cases.";
-        payload = requester.payload_in_text(out_text)
+        // out_text = input_text + ": " + await requester.world_api(input_text) + " cases.";
+        // payload = requester.payload_in_text(out_text)
+        payload = await requester.flex_world(input_text)
     }
     else if(input_text === "BOOM"){
         out_text = "God Boom, Welcome Sir!! Have a nice day.";
@@ -52,10 +55,10 @@ exports.webhook = functions.https.onRequest(async(req, res) => {
     return lah.reply(lah.replyToken(), payload)
 
     .then((response) => {
-        console.log(response)
+        // console.log(response)
         return res.status(200).send();
     }).catch((e) => {
-        console.log(e)
+        // console.log(e)
         return res.status(500).send();
     })
 
