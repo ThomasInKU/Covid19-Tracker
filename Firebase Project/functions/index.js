@@ -33,16 +33,11 @@ exports.webhook = functions.https.onRequest(async(req, res) => {
         out_text = "Collaborator:" + "\n" + "lisbono2001" + "\n" + "Noboomta" + "\n" + "Bhatara007" + "\n" + "toey10112";
         payload = requester.payload_collaborator(out_text);
     }
-    else if(input_text === "help"){
-        out_text = "help mode" + "\n"
-        out_text += "3 ways of command" + "\n"
-        out_text += "   1) Province with Capitalize (ex. Bangkok, Chiang Mai)" + "\n"
-        out_text += "   2) Overview command (Confirmed, Recovered, Hospitalized, Deaths, NewConfirmed, NewRecovered, NewHospitalized, NewDeaths)" + "\n"
-        out_text += "   3) World command (World +(cases, todayCases, deaths, todayDeaths, recovered, todayRecovered, active, critical, casesPerOneMillion, deathsPerOneMillion, tests, testsPerOneMillion, population, oneCasePerPeople, oneDeathPerPeople, oneTestPerPeople, activePerOneMillion, recoveredPerOneMillion, criticalPerOneMillion, affectedCountries))" + "\n"
-        payload = requester.payload_in_text(out_text)
+    else if(input_text === "help" || input_text === "Help"){
+        payload = requester.payload_help()
     }
     else{
-        out_text = "No command try 'help' for more guide." ;
+        out_text = "No command, try 'help' for more guide." ;
         payload = requester.payload_in_text(out_text)
     }
 
