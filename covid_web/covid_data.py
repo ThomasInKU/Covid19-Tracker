@@ -268,5 +268,3 @@ class WorldCovidData:
     def today_world_total_data(self, case):
         return self.world_today[case]
 
-cd = CountryCovidData()
-print(cd.print_dic("Thailand"))
