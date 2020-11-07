@@ -14,18 +14,11 @@
 
     <main>
       <aside>
-        <p>Date: <span id="date"></span></p>
-        <script>
-        dt =  new Date();
-        y = dt.getFullYear();
-        m = dt.getMonth() + 1;
-        d = dt.getDate();
-        document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
-        </script>
-        <div class="textbox"><img src="{% static 'images/infection1.png' %}"> Total Confirm Cases : {{totalconfirm}}</div>
-        <div class="textbox"><img src="{% static 'images/infection2.png' %}"> New Confirm Cases : {{newconfirm}}</div>
-        <div class="textbox"><img src="{% static 'images/infection3.png' %}"> New Deaths : {{newdeaths}}</div>
-        <div class="textbox"><img src="{% static 'images/infection4.png' %}"> Total Deaths : {{totaldeaths}}</div>
+                 <h2>Line bot</h2>
+
+        <img src="{% static 'images/linebot_qrcode.jpg' %}" style="width:400px;height:500px;">
+                         <h2>Type "help" in line bot for commands</h2>
+
       </aside>
       <article>
          <h2>Login</h2>
