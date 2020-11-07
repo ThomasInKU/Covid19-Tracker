@@ -13,6 +13,25 @@ module.exports = {
         ]
         return payload
     },
+    payload_help: function(){
+        var payload = [
+            {
+                type: "text",
+                text: "Google Doc: https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing",
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://drive.google.com/uc?id=1H-Mhqx2q1N53uT1xGV1VubOmbZQfRIxc",
+                "previewImageUrl": "https://drive.google.com/uc?id=1H-Mhqx2q1N53uT1xGV1VubOmbZQfRIxc",
+            },
+            {
+                "type": "image",
+                "originalContentUrl": "https://drive.google.com/uc?id=19KwDgIIkL-2A57258hP3XwLKIbsKTgNq",
+                "previewImageUrl": "https://drive.google.com/uc?id=19KwDgIIkL-2A57258hP3XwLKIbsKTgNq",
+            },
+        ]
+        return payload
+    },
     payload_collaborator: function(key_index){
         var payload = [
             {
