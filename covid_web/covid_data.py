@@ -224,13 +224,12 @@ class CountryCovidData:
                 "Afghanistan": 217 }
 
     def __init__(self):
-        self.world_today = self.get_data("world")
+        self.data = self.get_data()
     
     def get_result(self, case, country):
         if(self.country_name_isvalid(country)):
-            data = self.get_data("country")
-            code = self.find_country_code(country)
-            return data[code][case]
+            country_code = self.find_country_code(country)
+            return self.data[country_code][case]
         else:
             return "no command"
         
@@ -247,4 +246,26 @@ class CountryCovidData:
             return True
         else:
             return False
+    
+    def get_country_dic(self, country):
+        code = self.find_country_code(country)
+        return self.data[code]
+    
+    def print_dic(self, country):
+        dic = self.get_country_dic(country)
+        for pair in dic.items():
+            print(pair)
+
+class WorldCovidData:
+    
+    def __init__(self):
+        self.world_today = self.get_data("world")
+        
+    def get_data(self, typee):
+        world_covid_api = "https://corona.lmao.ninja/v2/all"
+        response = requests.get(world_covid_api) 
+        return response.json()
+        
+    def today_world_total_data(self, case):
+        return self.world_today[case]
 
