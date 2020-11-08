@@ -1,32 +1,29 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Covid19-Tracker</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
-  </head>
-
-  <body>
-    <header>
-      <h1>Covid19-Tracker</h1>
-      <nav>
-        <ul>
-          <li><a href="index">Home</a></li>
-          <li><a href="#">Find Area</a></li>
-          <li><a href="#">More Info</a></li>
-        </ul>
-      </nav>
-    </header>
-
-    <main>
-      <h2>Welcome to Covid19-Tracker</h2>
-
-      <p><a href="#">Don't have any account?</a></p>
-    </main>
-
-    <footer>
-      <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
-    </footer>
-  </body>
+    <link rel="stylesheet" href="{% static 'covid_web/details_style.css' %}" />
+    <body>
+    <h1>
+     Country: {{name}}
+    </h1>
+    <form action="/country">
+    <a><strong>Please search your country:  </strong></a>
+        <input list="browsers" name="country" id="country">
+        <datalist id="browsers">
+            {% for country in country_name %}
+                {% if name == country %} <option value='{{country}}'selected>{{country}}</option>
+                {%else%} 
+                    <option value='{{country}}'>{{country}}</option> 
+                {%endif%}
+            {%endfor%}
+        </datalist>
+        <button>submit</button>
+    </form>
+        <div class="textbox"><strong> Total Confirm Cases : </strong>{{totalconfirm}}</div>
+        <div class="textbox"><strong> New Confirm Cases : </strong>{{newconfirm}}</div>
+        <div class="textbox"><strong> New Deaths : </strong>{{newdeaths}}</div>
+        <div class="textbox"><strong> Total Deaths : </strong>{{totaldeaths}}</div>
+        <div class="textbox"><strong> Recovered : </strong>{{recovered}}</div>
+        <div class="textbox"><strong> Today Recovered : </strong>{{todayRecovered}}</div>
+        <div class="textbox"><strong> Active Cases : </strong>{{active}}</div>
+    </body>
 </html>
