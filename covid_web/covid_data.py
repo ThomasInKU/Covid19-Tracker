@@ -269,3 +269,5 @@ class WorldCovidData:
         return self.world_today[case]
 
 cd = CountryCovidData()
+for coun in cd.country.keys():
+    print(coun)

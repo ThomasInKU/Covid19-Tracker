@@ -17,18 +17,19 @@ def index(request):
 
 def details(request):
     cd = CountryCovidData()
+    country_name = cd.country.keys()
     country = ""
     context = {
         'totalconfirm': cd.get_result("cases", country),
         'newconfirm': cd.get_result("todayCases", country),
         'totaldeaths': cd.get_result("deaths", country),
-        'newdeaths': cd.get_result("todayDeaths", country),
-        'totalconfirm': cd.get_result("", country),
-        'newconfirm': cd.get_result("todayCases", country),
-        'totaldeaths': cd.get_result("deaths", country),
-        'newdeaths': cd.get_result("todayDeaths", country)
+        'newdeaths': cd.get_result("todayDeaths",country),
+        'recovered': cd.get_result("recovered", country),
+        'todayRecovered': cd.get_result("todayRecovered", country),
+        'active': cd.get_result("active", country),
     }
-    return render(request, 'index.html', context=context)
+    
+    return HttpResponse(request, 'details.html', context=context, country_name=country_name)
 
 
 def detail(request):
