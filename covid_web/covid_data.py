@@ -17,7 +17,3 @@ class CovidData:
         
     def today_total_data(self, case):
         return self.today[case]
-
-url = "https://corona.lmao.ninja/v2/all"
-response = requests.get(url) 
-print(response.json())

@@ -1,10 +1,8 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
-
 from covid_web.covid_data import CovidData
 from covid_web.forms import SignUpForm
-from covid_web.models import UserInfo
 
 
 def index(request):

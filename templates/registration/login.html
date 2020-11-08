@@ -14,35 +14,30 @@
 
     <main>
       <aside>
-                 <h2>Line bot</h2>
+        <h2>Line bot</h2>
 
-        <img src="{% static 'images/linebot_qrcode.jpg' %}" style="width:400px;height:500px;">
-                         <h2>Type "help" in line bot for commands</h2>
-
+        <img
+          src="{% static 'images/linebot_qrcode.jpg' %}"
+          style="width: 400px; height: 500px"
+        />
+        <h2>Type "help" in line bot for commands</h2>
       </aside>
       <article>
-         <h2>Login</h2>
- <form method="post">
-   {% csrf_token %}
-   {{ form.as_p }}
-   <p>
-   <button type="submit">Login</button>
-   </p>
-   <input type="hidden" name="next" value="{{next}}"/>
- </form>
- {# If you have written a password_reset template, then add #}
- <p>
- <a href="{% url 'password_reset' %}">Forgot password?</a>
-
-
- </p>
-  <p>
-
-
- </p>
+        <h2>Login</h2>
+        <form method="post">
+          {% csrf_token %} {{ form.as_p }}
+          <p>
+            <button type="submit">Login</button>
+          </p>
+          <input type="hidden" name="next" value="{{next}}" />
+        </form>
+        {# If you have written a password_reset template, then add #}
+        <p>
+          <a href="{% url 'password_reset' %}">Forgot password?</a>
+        </p>
       </article>
     </main>
-  <footer>
+    <footer>
       <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
     </footer>
   </body>

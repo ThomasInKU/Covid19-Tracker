@@ -1,51 +1,59 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Covid19-Tracker</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'covid_web/styles.css' %}" />
-  </head>
+{% extends "base_template.html" %} 
+{% block title %}
+<title>Home Page</title>
+<style>
+  .navbar {
+    display:none;
+  }
+</style>
+{%endblock %}
+{% block content %}
+<div class="left">
+  <p>Date: <span id="date"></span></p>
+  <script>
+    dt = new Date();
+    y = dt.getFullYear();
+    m = dt.getMonth() + 1;
+    d = dt.getDate();
+    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+  </script>
+  <div class="centered">
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection1.png' %}" /> Total Confirm Cases :
+      {{totalconfirm}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection2.png' %}" /> New Confirm Cases :
+      {{newconfirm}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection3.png' %}" /> New Deaths :
+      {{newdeaths}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection4.png' %}" /> Total Deaths :
+      {{totaldeaths}}
+    </div>
+  </div>
+</div>
+<div class="right">
+  <div class="centered">
+    <h2>Welcome to Covid19-Tracker</h2>
+    <form action="/detail/" method="post">
+      <label for="email">Email: </label><br />
+      <input id="email" type="email" name="email_field" /><br />
+      <label for="password">Password: </label><br />
+      <input id="password" type="password" name="password_field" /><br /><br />
+      <input type="submit" value="OK" />
+    </form>
 
-  <body>
-    <header>
-      <h1>Covid19-Tracker</h1>
-    </header>
+    <button onclick="location.href='accounts/login';">Log in</button>
 
-    <main>
-      <aside>
-        <p>Date: <span id="date"></span></p>
-        <script>
-        dt =  new Date();
-        y = dt.getFullYear();
-        m = dt.getMonth() + 1;
-        d = dt.getDate();
-        document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
-        </script>
-        <div class="textbox"><img src="{% static 'images/infection1.png' %}"> Total Confirm Cases : {{totalconfirm}}</div>
-        <div class="textbox"><img src="{% static 'images/infection2.png' %}"> New Confirm Cases : {{newconfirm}}</div>
-        <div class="textbox"><img src="{% static 'images/infection3.png' %}"> New Deaths : {{newdeaths}}</div>
-        <div class="textbox"><img src="{% static 'images/infection4.png' %}"> Total Deaths : {{totaldeaths}}</div>
-      </aside>
-      <article>
-          <h2>Welcome to Covid19-Tracker</h2>
-           <button onclick="location.href='accounts/login';">
-      Log in
-           </button>
-
-
-          <p>Don't have any account?</p>
-           <button  onclick="location.href='signup/';">
-      Register
-           </button>
-
-
-
-
-      </article>
-    </main>
-  <footer>
-      <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
-    </footer>
-  </body>
-</html>
+    <a href="signup/">Don't have any account?</a>
+  </div>
+</div>
+{% endblock %}
