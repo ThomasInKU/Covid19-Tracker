@@ -28,6 +28,9 @@ class MyLoginView(auth_views.LoginView):
         }
         return context
 
+def my_logout(request):
+     return auth_views.logout(request)
+
 def index(request):
     cd = WorldCovidData()
     context = {

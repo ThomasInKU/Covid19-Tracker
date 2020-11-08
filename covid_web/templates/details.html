@@ -1,7 +1,7 @@
-{% extends "base_template.html" %} {% block title %}<title>Home Page</title
->{%endblock %} {% block navbar %}
+{% extends "base_template.html" %} 
+{% block title %}<title>Detail Page</title>{%endblock %} {% block navbar %}
 <div class="navbar">
-    <a href="logout/" class="right">Logout</a>
+    <a href="{% url 'logout' %}" class="right">Logout</a>
 </div>
 {% endblock %}
 {% block content %}
@@ -16,7 +16,7 @@
 
 <div class="right">
 <div class="main">
-    <p>User: {{ user.get_username }}</p> 
+  <p style="font-size:1.25rem;">User: {{ user.get_username }}</p> 
   <h1>Country: {{name}} <span id="date"></span></h1>
     <script>
     dt = new Date();
@@ -37,13 +37,15 @@
     </datalist>
     <input type="Submit"></input>
   </form></br>
-  <div><p><strong> Total Confirm Cases : </strong>{{totalconfirm}}</p></div></br>
-  <div><p><strong> New Confirm Cases : </strong>{{newconfirm}}</p></div></br>
-  <div><p><strong> New Deaths : </strong>{{newdeaths}}</div></p></br>
-  <div><p><strong> Total Deaths : </strong>{{totaldeaths}}</p></div></br>
-  <div><p><strong> Recovered : </strong>{{recovered}}</p></div></br>
-  <div><p><strong> Today Recovered : </strong>{{todayRecovered}}</p></div></br>
-  <div><p><strong> Active Cases : </strong>{{active}}</p></div>
+  <div class="detail" style="padding: 1px; font-size: 1.50rem;">
+    <p><strong> Total Confirm Cases : </strong>{{totalconfirm}}</p>
+    <p><strong> New Confirm Cases : </strong>{{newconfirm}}</p>
+    <p><strong> New Deaths : </strong>{{newdeaths}}</p>
+    <p><strong> Total Deaths : </strong>{{totaldeaths}}</p>
+    <p><strong> Recovered : </strong>{{recovered}}</p>
+    <p><strong> Today Recovered : </strong>{{todayRecovered}}</p>
+    <p><strong> Active Cases : </strong>{{active}}</p>
+  </div>
 </div>
 </div>
 {% endblock %}
