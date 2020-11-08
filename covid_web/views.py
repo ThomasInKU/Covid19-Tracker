@@ -17,9 +17,14 @@ def index(request):
 
 def details(request):
     cd = CountryCovidData()
-    country_name = cd.country.keys()
-    country = ""
+    non_select = True
+    country = str(request.GET.get('country', ''))
+    if country in list(cd.country.keys()):
+        non_select = False
     context = {
+        'non_selected': non_select,
+        'name' : country,
+        'country_name' : list(cd.country.keys()),
         'totalconfirm': cd.get_result("cases", country),
         'newconfirm': cd.get_result("todayCases", country),
         'totaldeaths': cd.get_result("deaths", country),
@@ -29,7 +34,7 @@ def details(request):
         'active': cd.get_result("active", country),
     }
     
-    return HttpResponse(request, 'details.html', context=context, country_name=country_name)
+    return render(request, 'details.html', context=context)
 
 
 def detail(request):

@@ -1,0 +1,25 @@
+<html>
+    <body>
+    <h1>
+    Country: {{name}}
+    </h1>
+    <form action="/country">
+        <select name="country" id="country">
+            {% for country in country_name %}
+                {% if name == country %} <option value='{{country}}'selected>{{country}}</option>
+                {%else%} 
+                    <option value='{{country}}'>{{country}}</option> 
+                {%endif%}
+            {%endfor%}
+        </select>
+        <button>submit</button>
+    </form>
+        <div class="textbox"> Total Confirm Cases : {{totalconfirm}}</div>
+        <div class="textbox"> New Confirm Cases : {{newconfirm}}</div>
+        <div class="textbox"> New Deaths : {{newdeaths}}</div>
+        <div class="textbox"> Total Deaths : {{totaldeaths}}</div>
+        <div class="textbox"> Recovered : {{recovered}}</div>
+        <div class="textbox"> Today Recovered : {{todayRecovered}}</div>
+        <div class="textbox"> Active : {{active}}</div>
+    </body>
+</html>
