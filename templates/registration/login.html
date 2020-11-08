@@ -1,44 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Covid19-Tracker</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'covid_web/styles.css' %}" />
-  </head>
+{% extends "base_template.html" %} 
+{% block title %}<title>Home Page</title>{%endblock %} 
+{% block navbar %}
+    <div class="navbar">
+      <a href="signup/" class="right">Don't have any account?</a>
+    </div>
+{% endblock %}
 
-  <body>
-    <header>
-      <h1>Covid19-Tracker</h1>
-    </header>
+{% block content %}
+<div class="left">
+  <p>Date: <span id="date"></span></p>
+  <script>
+    dt = new Date();
+    y = dt.getFullYear();
+    m = dt.getMonth() + 1;
+    d = dt.getDate();
+    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+  </script>
+  <div class="centered">
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection1.png' %}" /> Total Confirm Cases :
+      {{totalconfirm}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection2.png' %}" /> New Confirm Cases :
+      {{newconfirm}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection3.png' %}" /> New Deaths :
+      {{newdeaths}}
+    </div>
+    <div class="textbox">
+      {% load static %}
+      <img src="{% static 'images/infection4.png' %}" /> Total Deaths :
+      {{totaldeaths}}
+    </div>
+  </div>
+</div>
+<div class="right">
+  <div class="centered">
+    <h2>Welcome to Covid19-Tracker</h2>
 
-    <main>
-      <aside>
-        <h2>Line bot</h2>
-
-        <img
-          src="{% static 'images/linebot_qrcode.jpg' %}"
-          style="width: 400px; height: 500px"
-        />
-        <h2>Type "help" in line bot for commands</h2>
-      </aside>
-      <article>
-        <h2>Login</h2>
-        <form method="post">
-          {% csrf_token %} {{ form.as_p }}
-          <p>
-            <button type="submit">Login</button>
-          </p>
-          <input type="hidden" name="next" value="{{next}}" />
-        </form>
-        {# If you have written a password_reset template, then add #}
-        <p>
-          <a href="{% url 'password_reset' %}">Forgot password?</a>
-        </p>
-      </article>
-    </main>
-    <footer>
-      <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
-    </footer>
-  </body>
-</html>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <p>
+        <button type="submit">Login</button>
+      </p>
+      <input type="hidden" name="next" value="{{next}}" />
+    </form></br>
+    <a href="{% url 'password_reset' %}">Forgot password?</a>
+  </div>
+</div>
+{% endblock %}

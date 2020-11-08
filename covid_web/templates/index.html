@@ -1,12 +1,11 @@
 {% extends "base_template.html" %} 
-{% block title %}
-<title>Home Page</title>
-<style>
-  .navbar {
-    display:none;
-  }
-</style>
-{%endblock %}
+{% block title %}<title>Home Page</title>{%endblock %} 
+{% block navbar %}
+    <div class="navbar">
+      <a href="signup/" class="right">Don't have any account?</a>
+    </div>
+{% endblock %}
+
 {% block content %}
 <div class="left">
   <p>Date: <span id="date"></span></p>
@@ -43,17 +42,15 @@
 <div class="right">
   <div class="centered">
     <h2>Welcome to Covid19-Tracker</h2>
-    <form action="/detail/" method="post">
-      <label for="email">Email: </label><br />
-      <input id="email" type="email" name="email_field" /><br />
-      <label for="password">Password: </label><br />
-      <input id="password" type="password" name="password_field" /><br /><br />
-      <input type="submit" value="OK" />
-    </form>
 
-    <button onclick="location.href='accounts/login';">Log in</button>
-
-    <a href="signup/">Don't have any account?</a>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <p>
+        <button type="submit">Login</button>
+      </p>
+      <input type="hidden" name="next" value="{{next}}" />
+    </form></br>
+    <a href="{% url 'password_reset' %}">Forgot password?</a>
   </div>
 </div>
 {% endblock %}

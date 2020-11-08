@@ -77,7 +77,8 @@ input[type="submit"]:hover {
 }
 
 /* Right-aligned link */
-.navbar a.logout {
+.navbar a.right {
+  background-color: #6abcf3;
   float: right;
 }
 
@@ -118,6 +119,12 @@ input[type="submit"]:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+}
+
+.centered .errorlist {
+  color: red;
+  font-size: 1rem;
+  list-style: none;
 }
 
 /* Main column */
