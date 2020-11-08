@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect
-from covid_web.covid_data import CovidData
+from covid_web.covid_data import CountryCovidData, WorldCovidData
 from covid_web.forms import SignUpForm
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
 class MyAuthForm(AuthenticationForm):
     error_messages = {
@@ -16,27 +17,28 @@ class MyAuthForm(AuthenticationForm):
 class MyLoginView(auth_views.LoginView):
     template_name = 'index.html'
     def get_context_data(self, **kwargs):
-        cd = CovidData()
+        cd = WorldCovidData()
         form = MyAuthForm(data=self.request.POST or None)
         context = {
             'form': form,
-            'totalconfirm': cd.today_total_data("cases"),
-            'newconfirm': cd.today_total_data("todayCases"),
-            'totaldeaths': cd.today_total_data("deaths"),
-            'newdeaths': cd.today_total_data("todayDeaths")
+            'totalconfirm': "{:,}".format(cd.get_result("cases")),
+            'newconfirm': "{:,}".format(cd.get_result("todayCases")),
+            'totaldeaths': "{:,}".format(cd.get_result("deaths")),
+            'newdeaths': "{:,}".format(cd.get_result("todayDeaths"))
         }
         return context
 
 def index(request):
-    cd = CovidData()
+    cd = WorldCovidData()
     context = {
-        'totalconfirm': cd.today_total_data("cases"),
-        'newconfirm': cd.today_total_data("todayCases"),
-        'totaldeaths': cd.today_total_data("deaths"),
-        'newdeaths': cd.today_total_data("todayDeaths")
+        'totalconfirm': "{:,}".format(cd.get_result("cases")),
+        'newconfirm': "{:,}".format(cd.get_result("todayCases")),
+        'totaldeaths': "{:,}".format(cd.get_result("deaths")),
+        'newdeaths': "{:,}".format(cd.get_result("todayDeaths"))
     }
     return render(request, 'index.html', context=context)
 
+@login_required()
 def details(request):
     cd = CountryCovidData()
     country = str(request.GET.get('country', ''))
@@ -53,13 +55,6 @@ def details(request):
     }
     
     return render(request, 'details.html', context=context)
-
-
-def detail(request):
-    context = {
-        'username': ""
-    }
-    return render(request, 'detail.html', context=context)
 
 
 def register(request):
