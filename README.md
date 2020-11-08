@@ -8,5 +8,7 @@ Most benefit of this application is users can get information about Covid-19 thr
 ### Project Iterations  
 * [Iteration 1 Plan](https://github.com/lisbono2001/Covid19-Tracker/projects/1)
 * [Iteration 2 Plan](https://github.com/lisbono2001/Covid19-Tracker/projects/2)
+* [Iteration 3 Plan](https://github.com/lisbono2001/Covid19-Tracker/projects/3)
+* [Iteration 4 Plan](https://github.com/lisbono2001/Covid19-Tracker/projects/4)
 
 For deeper detail be sure to check out [the wiki documentation](https://github.com/lisbono2001/Covid19-Tracker/wiki).
