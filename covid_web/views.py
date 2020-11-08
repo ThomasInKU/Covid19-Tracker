@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 class MyAuthForm(AuthenticationForm):
+    """Class that contains error message for invalid login."""
     error_messages = {
         'invalid_login': (
             "Incorrect username or password"
@@ -17,6 +18,7 @@ class MyAuthForm(AuthenticationForm):
 
 
 class MyLoginView(auth_views.LoginView):
+    """Class that contains configuration for index page."""
     template_name = 'index.html'
 
     def get_context_data(self, **kwargs):
@@ -32,19 +34,9 @@ class MyLoginView(auth_views.LoginView):
         return context
 
 
-def index(request):
-    cd = WorldCovidData()
-    context = {
-        'totalconfirm': "{:,}".format(cd.get_result("cases")),
-        'newconfirm': "{:,}".format(cd.get_result("todayCases")),
-        'totaldeaths': "{:,}".format(cd.get_result("deaths")),
-        'newdeaths': "{:,}".format(cd.get_result("todayDeaths"))
-    }
-    return render(request, 'index.html', context=context)
-
-
 @login_required()
 def details(request):
+    """Get data from user and show data from that country"""
     cd = CountryCovidData()
     country = str(request.GET.get('country', ''))
     context = {
@@ -75,7 +67,6 @@ def signup(request):
             login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             return redirect('index')
         # what if form is not valid?
-        # we should display a message in signup.html
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
