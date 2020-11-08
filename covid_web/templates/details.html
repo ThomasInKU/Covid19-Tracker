@@ -5,6 +5,7 @@
     </h1>
     <form action="/country">
         <select name="country" id="country">
+        {% if name == '' %} <option value='{{country}}'selected>Please select your country</option>{%endif%}
             {% for country in country_name %}
                 {% if name == country %} <option value='{{country}}'selected>{{country}}</option>
                 {%else%} 
