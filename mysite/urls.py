@@ -19,4 +19,6 @@ from django.urls import include, path
 urlpatterns = [
     path('', include('covid_web.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+
 ]

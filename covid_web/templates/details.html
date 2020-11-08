@@ -1,0 +1,51 @@
+{% extends "base_template.html" %} 
+{% block title %}<title>Detail Page</title>{%endblock %} {% block navbar %}
+<div class="navbar">
+    <a href="{% url 'logout' %}" class="right">Logout</a>
+</div>
+{% endblock %}
+{% block content %}
+<div class="left">
+    <div class="centered">
+        <h1 style="color:#5bd65f; -webkit-text-stroke: 1px grey;">Let's checkout our Linebot</h1>
+        {% load static %}
+        <img src="{% static 'images/linebot_qrcode.jpg' %}" style="width:300px;height:300px;">
+        <h2>Type "help" in line bot for commands</h2>
+    </div>
+</div>
+
+<div class="right">
+<div class="main">
+  <p style="font-size:1.25rem;">User: {{ user.get_username }}</p> 
+  <h1>Country: {{name}} <span id="date"></span></h1>
+    <script>
+    dt = new Date();
+    y = dt.getFullYear();
+    m = dt.getMonth() + 1;
+    d = dt.getDate();
+    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+    </script>
+  <form action="/country">
+    <a><strong>Please search your country: </strong></a></br>
+    <input list="browsers" name="country" id="country" />
+    <datalist id="browsers">
+      {% for country in country_name %} {% if name == country %}
+      <option value="{{country}}" selected>{{country}}</option>
+      {%else%}
+      <option value="{{country}}">{{country}}</option>
+      {%endif%} {%endfor%}
+    </datalist>
+    <input type="Submit"></input>
+  </form></br>
+  <div class="detail" style="padding: 1px; font-size: 1.50rem;">
+    <p><strong> Total Confirm Cases : </strong>{{totalconfirm}}</p>
+    <p><strong> New Confirm Cases : </strong>{{newconfirm}}</p>
+    <p><strong> New Deaths : </strong>{{newdeaths}}</p>
+    <p><strong> Total Deaths : </strong>{{totaldeaths}}</p>
+    <p><strong> Recovered : </strong>{{recovered}}</p>
+    <p><strong> Today Recovered : </strong>{{todayRecovered}}</p>
+    <p><strong> Active Cases : </strong>{{active}}</p>
+  </div>
+</div>
+</div>
+{% endblock %}

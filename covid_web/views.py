@@ -1,28 +1,72 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.shortcuts import render, redirect
+from covid_web.covid_data import CountryCovidData, WorldCovidData
+from covid_web.forms import SignUpForm
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 
-from covid_web.covid_data import CovidData
-from covid_web.models import UserInfo
 
-
-def index(request):
-    cd = CovidData()
-    context = {
-        'totalconfirm': cd.today_total_confirm_data("World","totalconfirm"),
-        'newconfirm': cd.today_total_confirm_data("World","newconfirm"),
-        'totaldeaths': cd.today_total_confirm_data("World","totaldeaths"),
-        'newdeaths': cd.today_total_confirm_data("World","newdeaths")
+class MyAuthForm(AuthenticationForm):
+    """Class that contains error message for invalid login."""
+    error_messages = {
+        'invalid_login': (
+            "Incorrect username or password"
+        ),
+        'inactive': ("This account is inactive."),
     }
-    return render(request, 'index.html', context=context)
 
 
-def detail(request):
-    username = UserInfo.objects.all()
+class MyLoginView(auth_views.LoginView):
+    """Class that contains configuration for index page."""
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        cd = WorldCovidData()
+        form = MyAuthForm(data=self.request.POST or None)
+        context = {
+            'form': form,
+            'totalconfirm': "{:,}".format(cd.get_result("cases")),
+            'newconfirm': "{:,}".format(cd.get_result("todayCases")),
+            'totaldeaths': "{:,}".format(cd.get_result("deaths")),
+            'newdeaths': "{:,}".format(cd.get_result("todayDeaths"))
+        }
+        return context
+
+
+@login_required()
+def details(request):
+    """Get data from user and show data from that country"""
+    cd = CountryCovidData()
+    country = str(request.GET.get('country', ''))
     context = {
-        'username': username
+        'name': country,
+        'country_name': list(cd.country.keys()),
+        'totalconfirm': "{:,}".format(cd.get_result("cases", country)),
+        'newconfirm': "{:,}".format(cd.get_result("todayCases", country)),
+        'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
+        'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
+        'recovered': "{:,}".format(cd.get_result("recovered", country)),
+        'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
+        'active': "{:,}".format(cd.get_result("active", country)),
     }
-    return render(request, 'detail.html', context=context)
+
+    return render(request, 'details.html', context=context)
 
 
-def register(request):
-    return render(request, 'register.html')
+def signup(request):
+    """Register a new user."""
+
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            raw_passwd = form.cleaned_data.get('password')
+            email = form.cleaned_data.get('email')
+            user = form.save()
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            return redirect('index')
+        # what if form is not valid?
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
