@@ -1,10 +1,12 @@
 <html>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'covid_web/details_style.css' %}" />
     <body>
     <h1>
-    Country: {{name}}
+     Country: {{name}}
     </h1>
     <form action="/country">
-    <a><strong>Please search your country: </strong></a>
+    <a><strong>Please search your country:  </strong></a>
         <input list="browsers" name="country" id="country">
         <datalist id="browsers">
             {% for country in country_name %}
@@ -16,12 +18,12 @@
         </datalist>
         <button>submit</button>
     </form>
-        <div class="textbox"> Total Confirm Cases : {{totalconfirm}}</div>
-        <div class="textbox"> New Confirm Cases : {{newconfirm}}</div>
-        <div class="textbox"> New Deaths : {{newdeaths}}</div>
-        <div class="textbox"> Total Deaths : {{totaldeaths}}</div>
-        <div class="textbox"> Recovered : {{recovered}}</div>
-        <div class="textbox"> Today Recovered : {{todayRecovered}}</div>
-        <div class="textbox"> Active : {{active}}</div>
+        <div class="textbox"><strong> Total Confirm Cases : </strong>{{totalconfirm}}</div>
+        <div class="textbox"><strong> New Confirm Cases : </strong>{{newconfirm}}</div>
+        <div class="textbox"><strong> New Deaths : </strong>{{newdeaths}}</div>
+        <div class="textbox"><strong> Total Deaths : </strong>{{totaldeaths}}</div>
+        <div class="textbox"><strong> Recovered : </strong>{{recovered}}</div>
+        <div class="textbox"><strong> Today Recovered : </strong>{{todayRecovered}}</div>
+        <div class="textbox"><strong> Active Cases : </strong>{{active}}</div>
     </body>
 </html>
