@@ -247,15 +247,6 @@ class CountryCovidData:
         name_is_valid = country_name in self.country.keys()
         return name_is_valid
 
-    def get_country_dic(self, country):
-        code = self.find_country_code(country)
-        return self.data[code]
-
-    def print_dic(self, country):
-        dic = self.get_country_dic(country)
-        for pair in dic.items():
-            print(pair)
-
 
 class WorldCovidData:
 
@@ -269,7 +260,3 @@ class WorldCovidData:
 
     def get_result(self, case):
         return self.world_today[case]
-
-
-cd = CountryCovidData()
-print(cd.country.fromkeys)
