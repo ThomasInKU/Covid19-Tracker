@@ -55,6 +55,7 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = (     # new
     'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -75,6 +76,10 @@ SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.apps.googleusercontent.com' # new
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HfhwDcXhbyGhWMtHcEiIeFOv'
+
+SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822' # new
+SOCIAL_AUTH_GITHUB_SECRET = '914f07f8cda7b923489a489b4dd7ac29f1688723'
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 ROOT_URLCONF = 'mysite.urls'
 
