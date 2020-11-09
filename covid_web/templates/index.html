@@ -1,9 +1,9 @@
-{% extends "base_template.html" %} 
-{% block title %}<title>Home Page</title>{%endblock %} 
+{% extends "base_template.html" %}
+{% block title %}<title>Home Page</title>{%endblock %}
 {% block navbar %}
-    <div class="navbar">
-      <a href="signup/" class="right">Don't have any account?</a>
-    </div>
+<div class="navbar">
+  <a href="signup/" class="right">Don't have any account?</a>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -49,9 +49,8 @@
         <button type="submit">Login</button>
       </p>
       <input type="hidden" name="next" value="{{next}}" />
-    </form></br>
+    </form><br>
     <a href="{% url 'password_reset' %}">Forgot password?</a>
   </div>
 </div>
 {% endblock %}
->>>>>>> d60c83d588c5ea71dddb9a6c908e872c20ae0b40
