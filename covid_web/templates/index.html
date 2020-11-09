@@ -50,6 +50,8 @@
       </p>
       <input type="hidden" name="next" value="{{next}}" />
     </form></br>
+      <a href="{% url 'social:begin' 'google-oauth2' %}"><img src={% static 'images/google'%}></a><br><br>
+    </div>
     <a href="{% url 'password_reset' %}">Forgot password?</a>
   </div>
 </div>
