@@ -22,7 +22,6 @@ urlpatterns = [
     path('', include('covid_web.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
-    url(r'^auth/', include('social_django.urls', namespace='social')),
-    path('accounts/profile/', TemplateView.as_view(template_name='registration/profile.html')),
+    url(r'^auth/', include('social_django.urls', namespace='social'))
 
 ]
