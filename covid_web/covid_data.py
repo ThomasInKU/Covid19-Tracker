@@ -240,15 +240,6 @@ class CountryCovidData:
         country_covid_api = "https://corona.lmao.ninja/v2/countries?sort=country"
         return requests.get(country_covid_api).json()
 
-    def find_country_code(self, country_name):
-        return self.country[country_name]
-
-    def country_name_isvalid(self, country_name):
-        name_is_valid = country_name in self.country.keys()
-        return name_is_valid
-
-
-
 class WorldCovidData:
 
     def __init__(self):
@@ -260,7 +251,3 @@ class WorldCovidData:
 
     def get_result(self, case):
         return self.world_today[case]
-
-
-cd = WorldCovidData()
-print(cd.world_today)
