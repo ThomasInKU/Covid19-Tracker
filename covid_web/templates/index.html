@@ -1,9 +1,9 @@
-{% extends "base_template.html" %}
-{% block title %}<title>Home Page</title>{%endblock %}
+{% extends "base_template.html" %} 
+{% block title %}<title>Home Page</title>{%endblock %} 
 {% block navbar %}
-<div class="navbar">
-  <a href="signup/" class="right">Don't have any account?</a>
-</div>
+    <div class="navbar">
+      <a href="signup/" class="right">Don't have any account?</a>
+    </div>
 {% endblock %}
 
 {% block content %}
@@ -42,14 +42,19 @@
 <div class="right">
   <div class="centered">
     <h2>Welcome to Covid19-Tracker</h2>
-
     <form method="post">
       {% csrf_token %} {{ form.as_p }}
       <p>
         <button type="submit">Login</button>
       </p>
       <input type="hidden" name="next" value="{{next}}" />
-    </form><br>
+    </form>
+      <a href="{% url 'social:begin' 'google-oauth2' %}">
+      {% load static %}
+      <img src={% static 'images/google_login.png' %} style="width:230px;height:38px;"></a><br><br>
+      <a href="{% url 'social:begin' 'github' %}">      {% load static %}
+      <img src={% static 'images/github_logo.png' %} style="width:230px;height:38px;"></a><br><br>
+      <br>
     <a href="{% url 'password_reset' %}">Forgot password?</a>
   </div>
 </div>

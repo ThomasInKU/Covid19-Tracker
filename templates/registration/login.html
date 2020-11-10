@@ -49,7 +49,11 @@
         <button type="submit">Login</button>
       </p>
       <input type="hidden" name="next" value="{{next}}" />
-    </form></br>
+    </form>
+      <a href="{% url 'social:begin' 'google-oauth2' %}">
+      {% load static %}
+      <img src={% static 'images/google_login.png' %} style="width:230px;height:38px;"></a><br><br>
+      <a href="{% url 'social:begin' 'github' %}">githubbbb<br>
     <a href="{% url 'password_reset' %}">Forgot password?</a>
   </div>
 </div>

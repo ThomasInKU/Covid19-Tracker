@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'covid_web',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -48,20 +49,45 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
-AUTHENTICATION_BACKENDS = (
-     # username/password authentication
-    'django.contrib.auth.backends.ModelBackend',
- )
 
+
+AUTHENTICATION_BACKENDS = (     # new
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_PIPELINE = (    # new
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
+SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'  # new
+SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.apps.googleusercontent.com' # new
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HfhwDcXhbyGhWMtHcEiIeFOv'
+
+SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822' # new
+SOCIAL_AUTH_GITHUB_SECRET = '914f07f8cda7b923489a489b4dd7ac29f1688723'
+SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
-
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        ,
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,10 +95,26 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',    # new
+                'social_django.context_processors.login_redirect',  # new
             ],
         },
     },
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+SITE_ID = 1
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
