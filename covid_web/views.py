@@ -39,18 +39,31 @@ def details(request):
     """Get data from user and show data from that country"""
     cd = CountryCovidData()
     country = str(request.GET.get('country', ''))
-    context = {
-        'name': country,
-        'country_name': list(cd.country.keys()),
-        'totalconfirm': "{:,}".format(cd.get_result("cases", country)),
-        'newconfirm': "{:,}".format(cd.get_result("todayCases", country)),
-        'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
-        'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
-        'recovered': "{:,}".format(cd.get_result("recovered", country)),
-        'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
-        'active': "{:,}".format(cd.get_result("active", country)),
-    }
-
+    if country != '':
+        context = {
+            'name': country,
+            'country_name': list(cd.country.keys()),
+            'totalconfirm': "{:,}".format(cd.get_result("cases", country)),
+            'newconfirm': "{:,}".format(cd.get_result("todayCases", country)),
+            'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
+            'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
+            'recovered': "{:,}".format(cd.get_result("recovered", country)),
+            'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
+            'active': "{:,}".format(cd.get_result("active", country)),
+        }
+    else:
+        context = {
+            'name': country,
+            'country_name': list(cd.country.keys()),
+            'totalconfirm': cd.get_result("cases", country),
+            'newconfirm': cd.get_result("todayCases", country),
+            'totaldeaths': cd.get_result("deaths", country),
+            'newdeaths': cd.get_result("todayDeaths", country),
+            'recovered': cd.get_result("recovered", country),
+            'todayRecovered': cd.get_result("todayRecovered", country),
+            'active': cd.get_result("active", country),
+        }
+        
     return render(request, 'details.html', context=context)
 
 
