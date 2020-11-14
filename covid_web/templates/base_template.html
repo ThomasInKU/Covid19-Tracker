@@ -2,32 +2,77 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   {% block title %}<title>Covid19-Tracker</title>{% endblock %}
   {% load static %}
-  <link rel="stylesheet" href="{% static 'covid_web/styles.css' %}" />
+  <link rel="stylesheet" href="{% static 'covid_web/bootstrap/css/bootstrap.css' %}" />
+  {% load static %}
+  <script src ={% static 'covid_web/bootstrap/js/bootstrap.js' %}></script>
+  <style>
+    .centered {
+      color:white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 
 <body>
-  <div class="header">
-    <h1>Covid19-Tracker</h1>
-  </div>
+    {% block sidebar %}
+    {% endblock %}
 
-  {% block navbar %}
-  <div class="navbar">
-    <a href="#">LineBot</a>
-    <a href="#">Contact Us</a>
-    <a href="#" class="logout">Logout</a>
-  </div>
-  {% endblock %}
-
-
-  <div class="container">
-    {% block content %}{% endblock %}
-  </div>
-  <div class="footer">
-    <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
-  </div>
+    {% block navbar %}
+  <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding:1%">
+      <a class="navbar-brand" href="#">
+        {% load static %}
+        <img src="{% static 'images/infection2.png' %}" width="30" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" target="blank" href="https://github.com/lisbono2001/Covid19-Tracker/wiki">Doc</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bd-example-modal-lg">About</a>
+                  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <h5>About this project</h5>
+                          <p>Covid-19 Tracker is a part of KU ISP' projects</p>
+                          <hr>
+                          <h5>Team members</h5>
+                          <p>1. Bhatara Chamchan </p>
+                          <p>2. Puvana Swatvanith </p>
+                          <p>3. Suchon Prasert </p>
+                          <p>4. Theetouch Kasemarnontana </p>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="signup/" ><b>Don't have account?</b></a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+    {% endblock %}
+    
+    {% block content %}
+    {% endblock %}
+  <footer class="page-footer font-small bg-light" style=" bottom: 0; width: 100%;">
+    <div class="text-muted text-center py-3">
+      This is Covid-19 Tracker application use for ISP project proposal only.
+    </div>
+  </footer>
 </body>
-
 </html>
