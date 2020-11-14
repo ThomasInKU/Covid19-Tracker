@@ -10,21 +10,12 @@
   {% load static %}
   <script src ={% static 'covid_web/bootstrap/js/bootstrap.js' %}></script>
   <style>
-    {% comment %} make text centered in carousel {% endcomment %}
     .centered {
       color:white;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-    }
-    
-    .carousel-inner>.item>img, .carousel-inner>.item>a>img {
-      display: block;
-      height: auto;
-      max-width: 100%;
-      line-height: 1;
-      width: 100%; // Add this
     }
   </style>
 </head>
