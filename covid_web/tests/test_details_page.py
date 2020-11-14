@@ -18,7 +18,7 @@ class IndexPageTest(TestCase):
     def test_blank_detail_page(self):
         url = reverse('details')
         response = self.client.get(url)
-        self.assertContains(response, 'please select the country')
+        self.assertContains(response, "Let's find your Interesting area")
     
     # def test_detail_page(self):
     #     url = reverse('details/$', args= ["Thailand"])

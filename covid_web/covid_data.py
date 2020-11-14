@@ -234,7 +234,7 @@ class CountryCovidData:
             country_code = self.find_country_code(country)
             return int(self.data[country_code][case])
         else:
-            return 'please select the country'
+            return 0
 
     def get_data(self):
         """Get the data in Json from the API web."""

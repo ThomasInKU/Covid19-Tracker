@@ -18,7 +18,9 @@
 <div class="right">
   <div class="main">
     <p style="font-size:1.25rem;">User: {{ user.get_username }}</p>
+    {% if name == '' %} <h3 style='color: red'> Let's find your Interesting area </h3> {%endif%}
     <h1>Country: {{name}} <span id="date"></span></h1>
+    {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
     <script>
       dt = new Date();
       y = dt.getFullYear();
