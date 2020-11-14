@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome {{ user.get_username }}
+                  Welcome <b>{{ user.get_username }}</b>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -37,22 +37,21 @@
             <div class="col">
                 <div class="container bg-light p-5">
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
-                    
                     <div class="row pt-2">
                             <form action="/country">
                                 <a><strong>Please search your country: </strong></a><br>
                                 <div class="row p-4">
                                     <div class="col">
-                                            <input list="contries" name="country" id="country" class=" custom-select custom-select-sm">
-                                            <datalist id="contries">
-                                                {% for country in country_name %}
-                                                {% if name == country %}
-                                                    <option value="{{country}}" selected>{{country}}</option>
-                                                {%else%}
-                                                    <option value="{{country}}">{{country}}</option>
-                                                {%endif%}
-                                                {%endfor%}
-                                            </datalist>
+                                        <input list="contries" name="country" id="country" class=" custom-select custom-select-sm">
+                                        <datalist id="contries">
+                                            {% for country in country_name %}
+                                            {% if name == country %}
+                                                <option value="{{country}}" selected>{{country}}</option>
+                                            {%else%}
+                                                <option value="{{country}}">{{country}}</option>
+                                            {%endif%}
+                                            {%endfor%}
+                                        </datalist>
                                     </div>
                                     <div class="col">
                                         <button type="submit" class="btn btn-success float-left"><b>Submit</b></button>
@@ -60,13 +59,13 @@
                                 </div>
                             </form>
                             <div class="detail" style="padding: 1px; font-size: 1.50rem;">
-                                <p><strong> Total Confirm Cases : </strong>{{totalconfirm}}</p>
-                                <p><strong> New Confirm Cases : </strong>{{newconfirm}}</p>
-                                <p><strong> New Deaths : </strong>{{newdeaths}}</p>
-                                <p><strong> Total Deaths : </strong>{{totaldeaths}}</p>
-                                <p><strong> Recovered : </strong>{{recovered}}</p>
-                                <p><strong> Today Recovered : </strong>{{todayRecovered}}</p>
-                                <p><strong> Active Cases : </strong>{{active}}</p>
+                                <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
+                                <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
+                                <p> New Deaths : <span class="text-dark"><strong>{{newdeaths}}</strong></span></p>
+                                <p> Total Deaths : <span class="text-mudarkted"><strong>{{totaldeaths}}</strong></span></p>
+                                <p> Recovered : <span class="text-success"><strong>{{recovered}}</strong></span></p>
+                                <p> Today Recovered : <span class="text-success"><strong>{{todayRecovered}}</strong></span></p>
+                                <p> Active Cases : <span class="text-warning"><strong>{{active}}</strong></span></p>
                             </div>
                         </div>
                         <div class="col pt-2">
