@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = '7_ieibc((3ztfw7%f(v8d^_lp22_&b=-h=@*+=1hobq@b4f6ib'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -52,14 +50,13 @@ MIDDLEWARE = [
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
-
-AUTHENTICATION_BACKENDS = (     # new
+AUTHENTICATION_BACKENDS = (  # new
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.github.GithubOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
-SOCIAL_AUTH_PIPELINE = (    # new
+SOCIAL_AUTH_PIPELINE = (  # new
     'social_core.pipeline.social_auth.social_details',
     'social_core.pipeline.social_auth.social_uid',
     'social_core.pipeline.social_auth.auth_allowed',
@@ -71,13 +68,15 @@ SOCIAL_AUTH_PIPELINE = (    # new
     'social_core.pipeline.user.user_details',
 )
 
-SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'  # new
+SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.apps.googleusercontent.com' # new
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = \
+    '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.' \
+    'apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HfhwDcXhbyGhWMtHcEiIeFOv'
 
-SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822' # new
+SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822'
 SOCIAL_AUTH_GITHUB_SECRET = '914f07f8cda7b923489a489b4dd7ac29f1688723'
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 
@@ -86,8 +85,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -95,7 +93,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',    # new
+                'social_django.context_processors.backends',  # new
                 'social_django.context_processors.login_redirect',  # new
             ],
         },
@@ -118,7 +116,6 @@ SITE_ID = 1
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -129,25 +126,28 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+            'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

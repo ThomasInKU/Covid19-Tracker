@@ -1,3 +1,2 @@
-from django.test import TestCase
-
+"""tests for covid-web application."""
 # Create your tests here.

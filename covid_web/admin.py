@@ -1,1 +1,1 @@
-from django.contrib import admin
+"""Class for adjust admin web-page."""

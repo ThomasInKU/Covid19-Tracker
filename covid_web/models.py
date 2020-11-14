@@ -1,2 +1,1 @@
-from django.db import models
-from django.urls import reverse
+"""Model for Django covid-web application."""
