@@ -234,7 +234,7 @@ class CountryCovidData:
             country_code = self.find_country_code(country)
             return int(self.data[country_code][case])
         else:
-            return 0
+            return 'please select the country'
 
     def get_data(self):
         country_covid_api = "https://corona.lmao.ninja/v2/countries?sort=country"
