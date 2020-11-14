@@ -1,60 +1,116 @@
-{% extends "base_template.html" %} 
-{% block title %}<title>Home Page</title>{%endblock %} 
-{% block navbar %}
-    <div class="navbar">
-      <a href="signup/" class="right">Don't have any account?</a>
-    </div>
-{% endblock %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-<div class="left">
-  <p>Date: <span id="date"></span></p>
-  <script>
-    dt = new Date();
-    y = dt.getFullYear();
-    m = dt.getMonth() + 1;
-    d = dt.getDate();
-    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
-  </script>
-  <div class="centered">
-    <div class="textbox">
-      {% load static %}
-      <img src="{% static 'images/infection1.png' %}" /> Total Confirm Cases :
-      {{totalconfirm}}
-    </div>
-    <div class="textbox">
-      {% load static %}
-      <img src="{% static 'images/infection2.png' %}" /> New Confirm Cases :
-      {{newconfirm}}
-    </div>
-    <div class="textbox">
-      {% load static %}
-      <img src="{% static 'images/infection3.png' %}" /> New Deaths :
-      {{newdeaths}}
-    </div>
-    <div class="textbox">
-      {% load static %}
-      <img src="{% static 'images/infection4.png' %}" /> Total Deaths :
-      {{totaldeaths}}
-    </div>
-  </div>
-</div>
-<div class="right">
-  <div class="centered">
-    <h2>Welcome to Covid19-Tracker</h2>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% block title %}<title>Covid19-Tracker</title>{% endblock %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'covid_web/bootstrap/css/bootstrap.css' %}" />
+  {% load static %}
+  <script src ={% static 'covid_web/bootstrap/js/bootstrap.js' %}></script>
 
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <p>
-        <button type="submit">Login</button>
-      </p>
-      <input type="hidden" name="next" value="{{next}}" />
-    </form>
-      <a href="{% url 'social:begin' 'google-oauth2' %}">
-      {% load static %}
-      <img src={% static 'images/google_login.png' %} style="width:230px;height:38px;"></a><br><br>
-      <a href="{% url 'social:begin' 'github' %}">githubbbb<br>
-    <a href="{% url 'password_reset' %}">Forgot password?</a>
-  </div>
-</div>
-{% endblock %}
+  <style>
+    .centered {
+      color:white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding:1%">
+      <a class="navbar-brand" href="#">
+        {% load static %}
+        <img src="{% static 'images/infection2.png' %}" width="30" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                  <a class="nav-link" target="blank" href="">Doc</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" target="blank" href="#">About</a>
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link" href="signup/" ><b>Don't have account?</b></a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+
+  <div class="container-fluid p-4">
+
+    <div class="row">
+      <div class="col">
+        <div class="container bg-light p-3">
+          <h2><b>Login</b></h2>
+            <form class="form-signin" action="" method="post">
+              {% if form.errors %}
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                    </div>
+                  {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger">
+                      <strong>{{ error|escape }}</strong>
+                  </div>
+                {% endfor %}
+              {% endif %}
+
+              {% csrf_token %}
+              <label for="form.id_username" class="sr-only pt-2">Username</label>
+              <input type="text" id="form.id_username" class="form-control" name="{{ form.username.html_name}}" placeholder="Username" required autofocus>
+              <label for="form.id_password" class="sr-only pt-2">Password</label>
+              <input type="password" id="form.id_password" class="form-control" placeholder="Password" required name="{{ form.password.html_name}}">
+
+              <div class="row pt-3">
+                <div class="col text-center">
+                  <button type="submit" class="btn btn-outline-success" style="width:230px;height:38px;"><b>Login</b></button>
+                </div>
+                <div class="col text-center">
+                  <a href="{% url 'password_reset' %}" class="btn btn-warning" style="width:230px;height:38px; text-decoration: none;">Forgot password?</a>
+                </div>
+              </div>
+
+            </form>
+            
+            <div class="row pt-3">
+              <div class="col text-center pt-2">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                  {% load static %}
+                  <img src={% static 'images/google_login.png' %} style="width:230px;height:38px;">
+                </a>
+              </div>
+              <div class="col text-center pt-2">
+                <a href="{% url 'social:begin' 'github' %}">
+                  {% load static %}
+                  <img src={% static 'images/github_logo.png' %} style="width:230px;height:38px;">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer font-small bg-light" style="position: fixed; bottom: 0; width: 100%;">
+      <div class="text-muted text-center py-3">
+        This is Covid-19 Tracker application use for ISP project proposal only.
+      </div>
+    </footer>
+  </body>
+</html>
