@@ -1,3 +1,4 @@
+"""URLs link for covid-web app."""
 from django.urls import path
 
 from . import views

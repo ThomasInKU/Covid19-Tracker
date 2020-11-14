@@ -1,12 +1,10 @@
-import requests, json
+"""import module."""
 import requests
-from contextlib import closing
-import csv
-import time
-import pandas as pd
 
 
 class CountryCovidData:
+    """Class for tranfer the specific data from the APIweb (Json)."""
+
     country = {"Afghanistan": 217,
                "Albania": 216,
                "Algeria": 215,
@@ -227,9 +225,11 @@ class CountryCovidData:
                "Zimbabwe": 0, }
 
     def __init__(self):
+        """Get data from API web after initialize object."""
         self.data = self.get_data()
 
     def get_result(self, case, country):
+        """Get the result data by country if the country name is valid."""
         if self.country_name_isvalid(country):
             country_code = self.find_country_code(country)
             return int(self.data[country_code][case])
@@ -237,27 +237,33 @@ class CountryCovidData:
             return 0
 
     def get_data(self):
-        country_covid_api = "https://corona.lmao.ninja/v2/countries?sort=country"
-        return requests.get(country_covid_api).json()
-    
+        """Get the data in Json from the API web."""
+        country_api = "https://corona.lmao.ninja/v2/countries?sort=country"
+        return requests.get(country_api).json()
+
     def find_country_code(self, country_name):
-        for i in range(289):
-            if country_name == self.data[i]["country"]:
-                return i;
+        """Return the country object data."""
+        return self.country[country_name]
 
     def country_name_isvalid(self, country_name):
+        """Check if the country name is valid."""
         name_is_valid = country_name in self.country.keys()
         return name_is_valid
 
+
 class WorldCovidData:
+    """Class for tranfer the specific data from the APIweb (Json)."""
 
     def __init__(self):
+        """Get data from API web after initialize object."""
         self.world_today = self.get_data()
 
     def get_data(self):
+        """Get the data in Json from the API web."""
         world_covid_api = "https://corona.lmao.ninja/v2/all"
         return requests.get(world_covid_api).json()
 
     def get_result(self, case):
+        """Get the result data by the case name."""
         return self.world_today[case]
 

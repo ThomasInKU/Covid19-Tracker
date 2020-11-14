@@ -39,6 +39,10 @@
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
                             <form action="/country">
+                                {% if name == '' %} <h3 style='color: red'> Let's find your Interesting area</h3> {%endif%}
+                                
+                                {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
+                                
                                 <a><strong>Please search your country: </strong></a><br>
                                 <div class="row p-4">
                                     <div class="col">
@@ -59,6 +63,15 @@
                                 </div>
                             </form>
                             <div class="detail" style="padding: 1px; font-size: 1.50rem;">
+                                <p><span id="date" class="text-dark" style="font-size:1rem"></span></p>
+                                <script>
+                                    dt = new Date();
+                                    y = dt.getFullYear();
+                                    m = dt.getMonth() + 1;
+                                    d = dt.getDate();
+                                    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+                                </script>
+                                {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
                                 <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
                                 <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
                                 <p> New Deaths : <span class="text-dark"><strong>{{newdeaths}}</strong></span></p>
