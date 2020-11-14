@@ -1,0 +1,4 @@
+coverage
+django
+django-environ
+social-auth-app-django

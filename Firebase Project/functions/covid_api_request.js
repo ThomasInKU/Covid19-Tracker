@@ -1,24 +1,24 @@
-const request = require("request-promise");
+const request = require("request-promise")
 
 module.exports = {
     test: function(){
-        return "Hello";
+        return "Hello"
     },
     today_api: async function(key_index){
         const response = await request.get("https://covid19.th-stat.com/api/open/today")
-        const response_json = JSON.parse(response);
-        return response_json[key_index];
+        const response_json = JSON.parse(response)
+        return response_json[key_index]
     },
     today_api2: async function(key_index){
         const response = await request.get("https://covid19.th-stat.com/api/open/cases/sum")
-        const response_json = JSON.parse(response);
-        return response_json.Province[key_index];
+        const response_json = JSON.parse(response)
+        return response_json.Province[key_index]
     },
     world_api: async function(key_index){
         const response = await request.get("https://corona.lmao.ninja/v2/all")
         const response_json = JSON.parse(response)
         const key_in = key_index.slice(6);
-        return response_json[key_in];
+        return response_json[key_in]
     },
     world_command: function(key_index){
         var world_command_array = [
@@ -47,25 +47,28 @@ module.exports = {
         return world_command_array.includes(key_index)
     },
     overview_command: function(key_index){
-        var overview_array = ["Confirmed", "Recovered", "Hospitalized", "Deaths", "NewConfirmed", "NewRecovered", "NewHospitalized", "NewDeaths"]
+        var overview_array = ["Confirmed", "Recovered", "Hospitalized", 
+                            "Deaths", "NewConfirmed", "NewRecovered", 
+                            "NewHospitalized", "NewDeaths"]
         return overview_array.includes(key_index)
     },
     province: function(key_index){
         var province_th_array = [
             "Bangkok",
-            "Chonburi", 
-            "Phuket", 
-            "Samut Prakan", 
-            "Nonthaburi", 
-            "Yala", 
-            "Songkhla", 
-            "Pattani", 
-            "Narathiwat", 
-            "Chiang Mai", 
-            "Pathum Thani", 
+            "Chonburi",
+            "Phuket",
+            "Samut Prakan",
+            "Nonthaburi",
+            "Yala",
+            "Songkhla",
+            "Pattani",
+            "Narathiwat",
+            "Chiang Mai",
+            "Pathum Thani",
             "Chachoengsao",
             "Nakhon Pathom",
-            "Chumphon","Krabi",
+            "Chumphon",
+            "Krabi",
             "Nakhon Ratchasima",
             "Surat Thani",
             "Satun",
@@ -121,7 +124,6 @@ module.exports = {
             "Sakon Nakhon",
             "Maha Sarakham"
         ]
-        return province_th_array.includes(key_index);
+        return province_th_array.includes(key_index)
     }
-
 }
