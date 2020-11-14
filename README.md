@@ -18,5 +18,5 @@ Most benefit of this application is users can get information about Covid-19 thr
 * [Google Doc of CovidTracker Bot](https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing)
 #### Code Review
 * [Code Review Checklist](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Checklist)
-* [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)
+* [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)    
 For deeper detail be sure to check out [the wiki documentation](https://github.com/lisbono2001/Covid19-Tracker/wiki).
