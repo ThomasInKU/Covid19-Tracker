@@ -9,3 +9,4 @@ omit =
     mysite/*
     covid_web/init.py
     covid_web/migrations/
+    covid_web/forms.py/
