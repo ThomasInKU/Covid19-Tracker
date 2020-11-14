@@ -1,4 +1,4 @@
-const request = require("request-promise");
+const request = require("request-promise")
 const requester = require("./covid_api_request")
 
 module.exports = {
@@ -14,12 +14,11 @@ module.exports = {
     flex_world: async function(key_index){
         var day = new Date().toDateString();
         var cases = await requester.world_api(key_index)
-        // console.log(cases);
         var payload = [
             {
                 type: "flex",
                 altText: "World status",
-                contents:{
+                contents: {
                     "type": "bubble",
                     "header": {
                       "type": "box",
@@ -105,7 +104,7 @@ module.exports = {
                               "contents": [
                                 {
                                   "type": "text",
-                                  "text": "Time",
+                                  "text": "Date",
                                   "flex": 2,
                                   "size": "sm",
                                   "color": "#aaaaaa",
@@ -227,7 +226,7 @@ module.exports = {
                               "contents": [
                                 {
                                   "type": "text",
-                                  "text": "Time",
+                                  "text": "Date",
                                   "flex": 2,
                                   "size": "sm",
                                   "color": "#aaaaaa",
@@ -349,7 +348,7 @@ module.exports = {
                               "contents": [
                                 {
                                   "type": "text",
-                                  "text": "Time",
+                                  "text": "Date",
                                   "flex": 2,
                                   "size": "sm",
                                   "color": "#aaaaaa",
