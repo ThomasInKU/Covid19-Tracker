@@ -2,18 +2,32 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   {% block title %}<title>Covid19-Tracker</title>{% endblock %}
-  {% load static %}
-  <link rel="stylesheet" href={% static 'covid_web/css/bootstrap.css' %}>
   {% load static %}
   <link rel="stylesheet" href="{% static 'covid_web/styles.css' %}" />
 </head>
-<body>
-    <h1> Hello Boootstrap</h1>
 
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    {% load static %}
-    <script src ="{% static 'covid_web/js/bootstrap.js' %}%></script>
+<body>
+  <div class="header">
+    <h1>Covid19-Tracker</h1>
+  </div>
+
+  {% block navbar %}
+  <div class="navbar">
+    <a href="#">LineBot</a>
+    <a href="#">Contact Us</a>
+    <a href="#" class="logout">Logout</a>
+  </div>
+  {% endblock %}
+
+
+  <div class="container">
+    {% block content %}{% endblock %}
+  </div>
+  <div class="footer">
+    <p>This is Covid19-Tracker app used for ISP project proposal only.</p>
+  </div>
 </body>
+
 </html>
