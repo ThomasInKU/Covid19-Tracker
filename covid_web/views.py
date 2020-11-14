@@ -43,6 +43,9 @@ def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
     country = str(request.GET.get('country', ''))
+    error_warning = False
+    if country not in list(cd.country.keys()) and country != "":
+        error_warning = True
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -54,6 +57,7 @@ def details(request):
         'todayRecovered':
             "{:,}".format(cd.get_result("todayRecovered", country)),
         'active': "{:,}".format(cd.get_result("active", country)),
+        'error_warning' : error_warning,
     }
 
     return render(request, 'details.html', context=context)
