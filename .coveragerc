@@ -1,0 +1,11 @@
+[run]
+
+branch = True
+
+cover_pylib = False
+
+omit =
+    manage.py
+    mysite/*
+    covid_web/init.py
+    covid_web/migrations/
