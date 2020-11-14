@@ -1,9 +1,6 @@
 import requests, json
-import requests
-from contextlib import closing
 import csv
 import time
-import pandas as pd
 
 
 class CountryCovidData:
