@@ -76,3 +76,8 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+def prevent(request):
+    """Render prevent page."""
+    context = {}
+    return render(request, 'prevent.html', context=context)
