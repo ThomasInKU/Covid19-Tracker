@@ -18,23 +18,21 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2',)
 
+
 class UserForm(forms.ModelForm):
+    """User form for use login."""
+
     password = forms.CharField(widget=forms.PasswordInput)
     username = forms.EmailField()
 
     class Meta:
-        model = User
-        fields =['username','password']
+        """Model for user login."""
 
-    def clean(self):
-        username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        if not user or not user.is_active:
-            raise forms.ValidationError("Sorry, that login was invalid. Please try again.")
-        return self.cleaned_data
+        model = User
+        fields = ['username', 'password']
 
     def login(self, request):
+        """User login function."""
         username = self.cleaned_data.get('username')
         password = self.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
