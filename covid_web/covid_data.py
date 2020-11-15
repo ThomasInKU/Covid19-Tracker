@@ -243,7 +243,9 @@ class CountryCovidData:
 
     def find_country_code(self, country_name):
         """Return the country object data."""
-        return self.country[country_name]
+        for i in range(290):
+            if country_name == self.data[i]["country"]:
+                return i
 
     def country_name_isvalid(self, country_name):
         """Check if the country name is valid."""
