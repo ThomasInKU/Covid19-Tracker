@@ -1,17 +1,13 @@
 """Unittests for Django polls application."""
-import datetime
-import unittest
-
-from covid_web.covid_data import CountryCovidData, WorldCovidData
-from django.contrib.auth.models import User
+from covid_web.covid_data import WorldCovidData
 from django.test import TestCase
-from django.utils import timezone
 from django.urls import reverse
 
 
 class IndexPageTest(TestCase):
 
     def test_world_detail_display_correctly(self):
+        """test the covid data displays on details page correctly"""
         cd = WorldCovidData()
         url = reverse('index')
         response = self.client.get(url)
@@ -23,13 +19,3 @@ class IndexPageTest(TestCase):
         self.assertContains(response, today_case)
         self.assertContains(response, deaths)
         self.assertContains(response, new_deaths)
-        
-
-
-
-
-
-
-
-
-
