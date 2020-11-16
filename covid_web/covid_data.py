@@ -268,4 +268,3 @@ class WorldCovidData:
     def get_result(self, case):
         """Get the result data by the case name."""
         return self.world_today[case]
-

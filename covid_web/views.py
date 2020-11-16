@@ -57,7 +57,7 @@ def details(request):
         'todayRecovered':
             "{:,}".format(cd.get_result("todayRecovered", country)),
         'active': "{:,}".format(cd.get_result("active", country)),
-        'error_warning' : error_warning,
+        'error_warning': error_warning,
     }
 
     return render(request, 'details.html', context=context)
