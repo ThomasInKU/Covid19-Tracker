@@ -60,7 +60,7 @@
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
                             <form action="/country">
-                                {% if name == '' %} <h3 style='color: red'> Let's find your Interesting area</h3> {%endif%}
+                                {% if name == '' %} <h3 style='color: red'> Let's find your Interested area</h3> {%endif%}
                                 
                                 {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
                                 
@@ -92,14 +92,6 @@
                                     d = dt.getDate();
                                     document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
                                 </script>
-                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                                    <script> 
-                                    $(document).ready(function(){
-                                        $(".btn btn-success float-left").click(function(){
-                                            alert(duke")
-                                        });
-                                    });
-                                    </script>
                                 {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
                                 <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
                                 <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>

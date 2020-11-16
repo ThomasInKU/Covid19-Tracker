@@ -23,7 +23,8 @@
             showTooltip: true,
             scaleColors: ['#C8EEFF', '#006491'],
             onRegionClick: function (element, code, region) {
-              $('#pv').html(region)
+              $('#pv').html(region) 
+              location.replace("?province="+region)
             }
         });
     });

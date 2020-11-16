@@ -81,3 +81,8 @@ def prevent(request):
     """Render prevent page."""
     context = {}
     return render(request, 'prevent.html', context=context)
+
+def map(request):
+    """Render prevent page."""
+    context = {}
+    return render(request, 'map.html', context=context)
