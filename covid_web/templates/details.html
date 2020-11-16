@@ -92,6 +92,14 @@
                                     d = dt.getDate();
                                     document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
                                 </script>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                    <script> 
+                                    $(document).ready(function(){
+                                        $(".btn btn-success float-left").click(function(){
+                                            alert(duke")
+                                        });
+                                    });
+                                    </script>
                                 {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
                                 <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
                                 <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
