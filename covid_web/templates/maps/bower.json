@@ -1,0 +1,28 @@
+{
+  "name": "jqvmap-thai",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kobkrit/jqvmap-thai",
+  "authors": [
+    "Kobkrit Viriyayudhakorn <kobkrit@gmail.com>"
+  ],
+  "description": "The popular JQuery jVectorMap library including Thai map",
+  "main": [
+    "jqvmap/jqvmap.css",
+    "jqvmap/jquery.vmap.min.js",
+    "jqvmap/maps/jquery.vmap.thai.js"
+  ],
+  "keywords": [
+    "Jquery",
+    "Vector",
+    "Map",
+    "Thai"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
