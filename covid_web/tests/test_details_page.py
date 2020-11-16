@@ -17,4 +17,4 @@ class IndexPageTest(TestCase):
         """
         url = reverse('details')
         response = self.client.get(url)
-        self.assertContains(response, "Let's find your Interesting area")
+        self.assertContains(response, "Let's find your Interested area")
