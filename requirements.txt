@@ -1,3 +1,5 @@
+gspread
+google-api-python-client
 coverage
 django
 django-environ
