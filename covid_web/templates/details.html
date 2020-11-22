@@ -2,8 +2,6 @@
 
 {% block title %}<title>Covid19 Tracker Country</title>{% endblock %}
 
-user: {{user_country}}
-
 {% block navbar %}
   <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding:1%">
       <a class="navbar-brand" href="#">
@@ -16,7 +14,7 @@ user: {{user_country}}
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }}</b>
+                  Welcome <b>{{ user.get_username }} user: {{user_country}} ip: {{ip}}</b>
               </li>
           </ul>
           <ul class="navbar-nav">

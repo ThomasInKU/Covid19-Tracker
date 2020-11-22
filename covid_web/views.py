@@ -2,7 +2,7 @@
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
-from covid_web.covid_data import CountryCovidData, WorldCovidData
+from covid_web.covid_data import CountryCovidData, WorldCovidData, ThailandCovidData
 from covid_web.forms import SignUpForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
@@ -48,17 +48,18 @@ def get_client_ip(request):
     return ip
 
 
-def get_location_form_ip(ip):
+def get_user_country_form_ip(ip):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = requests.get(url)
     response.raise_for_status()
-    return response.json()
+    return response.json()["country_name"]
 
 @login_required()
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    user_country = get_location_form_ip(get_client_ip(request))
+    user_country = get_user_country_form_ip(get_client_ip(request))
+    ip = get_client_ip(request)
     country = str(request.GET.get('country', ''))
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
@@ -76,6 +77,7 @@ def details(request):
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
         'user_country': user_country,
+        'ip':ip,
     }
 
     return render(request, 'details.html', context=context)
@@ -102,7 +104,7 @@ def prevent(request):
 
 def map(request):
     """Render prevent page."""
-    cd = CountryCovidData()
-    country = str(request.GET.get('country', ''))
-    context = {'totalconfirm': "{:,}".format(cd.get_result("cases", country)),}
+    cd = ThailandCovidData()
+    country = str(request.GET.get('province', ''))
+    context = {'totalconfirm': "{:,}".format(cd.get_result(country)),}
     return render(request, 'th_map.html', context=context)
