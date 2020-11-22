@@ -187,14 +187,3 @@ input[type="submit"]:hover {
   height:50px; 
 }
 
-.vmap {
-  width: 28%;
-  margin: auto;
-}
-
-.vmap path {
-  fill: #6abcf3;
-  stroke: #5bd65f;
-  stroke-width: 3px;
-  transition: fill 0.3s;
-}
