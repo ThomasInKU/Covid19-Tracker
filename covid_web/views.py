@@ -68,6 +68,8 @@ def details(request):
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
+    if country == "":
+        country = user_country
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -80,7 +82,8 @@ def details(request):
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
         'user_country': user_country,
-        'user_location' : user_country['country_name'],
+        'user_location' : user_country,
+        'ip': get_user_ip(request)
     }
 
     return render(request, 'details.html', context=context)

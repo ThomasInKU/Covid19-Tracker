@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }} location: {{user_location}} ip: {{ip}}</b>
+                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_location}}</b> IP: <b>{{ip}}</b>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -59,8 +59,8 @@
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
                             <form action="/country">
-                                {% if name == '' %} <h3 style='color: red'> Let's find your Interested area</h3> {%endif%}
-                                
+                                <h3>Your Location: {{user_location}}</h3>
+                                <h3 style='color: red'> Let's find your interesting area</h3>
                                 {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
                                 
                                 <a><strong>Please search your country: </strong></a><br>
