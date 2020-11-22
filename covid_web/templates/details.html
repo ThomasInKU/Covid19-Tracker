@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }} user: {{user_country}} ip: {{ip}}</b>
+                  Welcome <b>{{ user.get_username }} location: {{user_location}} ip: {{ip}}</b>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -83,7 +83,7 @@
                                 </div>
                             </form>
                             <div class="detail" style="padding: 1px; font-size: 1.50rem;">
-                                <p><span id="date" class="text-dark" style="font-size:1rem"></span></p>
+                                <p><span id="date" class="text-dark" style="font-size:1rem"></span>{{user_location}}</p>
                                 <script>
                                     dt = new Date();
                                     y = dt.getFullYear();

@@ -47,19 +47,23 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-
-def get_user_country_form_ip(ip):
+def get_location_form_ip(ip):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = requests.get(url)
     response.raise_for_status()
     return response.json()["country_name"]
 
+def get_user_ip(request):
+    res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    ip = data['ip']
+    return ip
+
 @login_required()
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    user_country = get_user_country_form_ip(get_client_ip(request))
-    ip = get_client_ip(request)
+    user_country = get_location_form_ip(get_user_ip(request))
     country = str(request.GET.get('country', ''))
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
@@ -72,12 +76,11 @@ def details(request):
         'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
         'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
         'recovered': "{:,}".format(cd.get_result("recovered", country)),
-        'todayRecovered':
-            "{:,}".format(cd.get_result("todayRecovered", country)),
+        'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
         'user_country': user_country,
-        'ip':ip,
+        'user_location' : user_country['country_name'],
     }
 
     return render(request, 'details.html', context=context)
