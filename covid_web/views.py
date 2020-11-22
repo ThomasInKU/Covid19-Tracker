@@ -6,6 +6,8 @@ from covid_web.covid_data import CountryCovidData, WorldCovidData
 from covid_web.forms import SignUpForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+import requests
+
 
 
 class MyAuthForm(AuthenticationForm):
@@ -46,9 +48,9 @@ def get_client_ip(request):
     return ip
 
 
-def get_location_form_ip(ip, request):
+def get_location_form_ip(ip):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
-    response = request.get(url)
+    response = requests.get(url)
     response.raise_for_status()
     return response.json()
 
@@ -56,7 +58,7 @@ def get_location_form_ip(ip, request):
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    user_country = get_location_form_ip(get_client_ip(request),request)
+    user_country = get_location_form_ip(get_client_ip(request))
     country = str(request.GET.get('country', ''))
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
