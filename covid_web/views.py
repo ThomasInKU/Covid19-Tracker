@@ -111,6 +111,7 @@ def prevent(request):
 def map(request):
     """Render prevent page."""
     cd = ThailandCovidData()
-    country = str(request.GET.get('province', ''))
-    context = {'totalconfirm': "{:,}".format(cd.get_result(country)),}
+    province = str(request.GET.get('province', ''))
+    context = {'totalconfirm': "{:,}".format(cd.get_result(province)),
+               'province': province}
     return render(request, 'th_map.html', context=context)
