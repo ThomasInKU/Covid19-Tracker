@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_location}}</b> IP: <b>{{ip}}</b><br>
+                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_country}}</b> IP: <b>{{ip}}</b><br>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -47,11 +47,12 @@
                             var main = document.getElementById('main')
                             var data = { zoom: 6, center: {lat:14, lng:100}}
                             first = new google.maps.Map(main, data)
-                            new google.maps.Marker({map: first, position:{lat:13.755824,lng:100.567428 }})
+                            new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
                         }
                     </script>
                 <br>
                 <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px">Info</a>
+                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white;">Thailand Map</a>
             </div>
 
             <div class="col">
@@ -59,8 +60,10 @@
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
                             <form action="/country">
-                                <h3>Your Location: {{user_location}}</h3>
-                                <h3 style='color: red'> Let's find your interesting area</h3>
+                                {% if name == '' %} 
+                                    <h3 style='color: red'> Let's find your Interested area</h3>
+                                    <h3>Your Location: {{user_country}}</h3>
+                                {%endif%}
                                 {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
                                 
                                 <a><strong>Please search your country: </strong></a><br>

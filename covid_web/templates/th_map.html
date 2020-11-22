@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
+{% extends "base_template.html" %}
+{% block title %}
     <title>Thai Maps</title>
-    <link rel="stylesheet" href="/covid_web/static/covid_web/styles.css">
     <style>
         .mapdiv{
           width: 28%;
@@ -11,7 +8,7 @@
         }
         
         .mapdiv path {
-          fill: #b9c0c1;
+          fill: #DEDEDE;
           stroke: #ea4646;
           stroke-width: 1.5px;
           transition: fill 0.3s;
@@ -20,12 +17,41 @@
         .mapdiv path:hover{
             fill: coral;
         }
-        
     </style>
-</head>
-<body>
-<h1>Province: {{province}}</h1>
-<h1>Total Cases: {{totalconfirm}}</h1>
+{% endblock %}
+
+{% block navbar %}
+  <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding:1%">
+      <a class="navbar-brand" href="#">
+        {% load static %}
+        <img src="{% static 'images/infection2.png' %}" width="30" height="30" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                    Welcome <b>{{ user.get_username }}
+              </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item px-3">
+                <a class="btn btn-info" href="{% url 'details' %}" style="color:white; width:100px">Back</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}" ><b>Logout</b></a>
+            </li>
+          </ul>
+      </div>
+  </nav>
+{% endblock %}
+
+{% block content %}
+<div class="container p-5">
+    <div class="text-warning"><h1><b>Situation in Thailand</h1></b></div>
+    <h3>Province: <b>{{province}}</b></h3>
+    <div class="text-danger"><h3>Total Cases: <b>{{totalconfirm}}</b></h3></div>
     <div class="mapdiv">
         <svg version="1.2" viewbox="0 0 1000 1837" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xhtml">
             <a xlink:title="1" xlink:href="?province=MaeHongSon">
@@ -348,5 +374,5 @@
             </circle>
         </svg>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

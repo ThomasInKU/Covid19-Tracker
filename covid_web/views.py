@@ -57,7 +57,16 @@ def get_user_ip(request):
     res = requests.get('https://ipinfo.io/')
     data = res.json()
     ip = data['ip']
+    location = data['loc'].split(',')
+    latti = location[0]
+    longti = location
     return ip
+
+def get_user_address(request):
+    res = requests.get('https://ipinfo.io/')
+    data = res.json()
+    location = data['loc']
+    return location
 
 @login_required()
 def details(request):
@@ -65,6 +74,9 @@ def details(request):
     cd = CountryCovidData()
     user_country = get_location_form_ip(get_user_ip(request))
     country = str(request.GET.get('country', ''))
+    user_address = get_user_address(request)
+    user_lattitude = user_address.split(',')[0]
+    user_longtitude = user_address.split(',')[1]
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
@@ -82,7 +94,8 @@ def details(request):
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
         'user_country': user_country,
-        'user_location' : user_country,
+        'user_lattitude' : user_lattitude,
+        'user_longtitude' : user_longtitude,
         'ip': get_user_ip(request)
     }
 
@@ -113,5 +126,5 @@ def map(request):
     cd = ThailandCovidData()
     province = str(request.GET.get('province', ''))
     context = {'totalconfirm': "{:,}".format(cd.get_result(province)),
-               'province': province}
+               'province': province,}
     return render(request, 'th_map.html', context=context)
