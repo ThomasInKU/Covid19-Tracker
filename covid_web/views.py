@@ -89,9 +89,7 @@ def details(request):
         error_warning = True
     if country == "":
         country = user_country
-
     if request.method == 'POST' and 'run_script' in request.POST:
-        # call function
         sheet.add_country(request.user.username, country)
 
     context = {

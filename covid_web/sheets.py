@@ -51,7 +51,7 @@ class Sheet:
         col = self.next_available_col(row)
         if int(col) < 8:
             self.sheet.update_cell(row, col, country)
-            success = True
+            status = True
         return status
 
     def call_countries(self, username):
@@ -62,8 +62,3 @@ class Sheet:
                 if self.sheet.cell(row, i).value == "":
                     countries.append(self.sheet.cell(row, i).value)
         return countries
-
-# database = Sheet()
-# database.create_new_user("urn")
-# database.find_username("Thee")
-# database.add_country("urn","England")
