@@ -78,7 +78,7 @@ def get_user_address(request):
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    sheet = Sheet()
+    sheet = Sheet(request.user.username)
     country = str(request.GET.get('country', ''))
     user_country = get_location_form_ip(get_user_ip(request))
     user_address = get_user_address(request)
@@ -89,8 +89,10 @@ def details(request):
         error_warning = True
     if country == "":
         country = user_country
-    if request.method == 'POST' and 'run_script' in request.POST:
-        sheet.add_country(request.user.username, country)
+    if request.method == 'POST' and 'add_country' in request.POST:
+        sheet.add_country(country)
+    if request.method == 'POST' and 'delete_country' in request.POST:
+        sheet.delete_cell(country)
 
     context = {
         'name': country,
@@ -107,6 +109,7 @@ def details(request):
         'user_lattitude': user_lattitude,
         'user_longtitude': user_longtitude,
         'ip': get_user_ip(request),
+        'pinnedarea': sheet.call_countries(),
     }
     return render(request, 'details.html', context=context)
 

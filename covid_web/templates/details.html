@@ -60,58 +60,82 @@
                 <div class="container bg-light p-5">
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
-                        <form action="/country">
-                            {% if name == '' %} 
-                                <h3 style='color: red'> Let's find your Interested area</h3>
-                                <h3>Your Location: {{user_country}}</h3>
-                            {%endif%}
-                            {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
-                            
-                            <a><strong>Please search your country: </strong></a><br>
-                            <div class="row p-4">
-                                <div class="col">
-                                    <input list="contries" name="country" id="country" class=" custom-select custom-select-sm">
-                                    <datalist id="contries">
-                                        {% for country in country_name %}
-                                        {% if name == country %}
-                                            <option value="{{country}}" selected>{{country}}</option>
-                                        {%else%}
-                                            <option value="{{country}}">{{country}}</option>
-                                        {%endif%}
-                                        {%endfor%}
-                                    </datalist>
+                        <div class="col-8">
+                            <form action="/country">
+                                {% if name == '' %} 
+                                    <h3 style='color: red'> Let's find your Interested area</h3>
+                                    <h3>Your Location: {{user_country}}</h3>
+                                {%endif%}
+                                {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
+                                
+                                <a><strong>Please search your country: </strong></a><br>
+                                <div class="row p-4">
+                                    <div class="col">
+                                        <input list="contries" name="country" id="country" class=" custom-select custom-select-sm">
+                                        <datalist id="contries">
+                                            {% for country in country_name %}
+                                            {% if name == country %}
+                                                <option value="{{country}}" selected>{{country}}</option>
+                                            {%else%}
+                                                <option value="{{country}}">{{country}}</option>
+                                            {%endif%}
+                                            {%endfor%}
+                                        </datalist>
+                                    </div>
+                                    <div class="col">
+                                        <button type="submit" class="btn btn-success float-left"><b>Submit</b></button>
+                                    </div>
                                 </div>
-                                <div class="col">
-                                    <button type="submit" class="btn btn-success float-left"><b>Submit</b></button>
+                            </form>
+                            <div class="detail" style="padding: 1px; font-size: 1.50rem;">
+                                <h3><span id="date" class="text-dark" style="font-size:2rem"></span></h3>
+                                <script>
+                                    dt = new Date();
+                                    y = dt.getFullYear();
+                                    m = dt.getMonth() + 1;
+                                    d = dt.getDate();
+                                    document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
+                                </script>
+                                {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
+                                <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
+                                <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
+                                <p> New Deaths : <span class="text-dark"><strong>{{newdeaths}}</strong></span></p>
+                                <p> Total Deaths : <span class="text-mudarkted"><strong>{{totaldeaths}}</strong></span></p>
+                                <p> Recovered : <span class="text-success"><strong>{{recovered}}</strong></span></p>
+                                <p> Today Recovered : <span class="text-success"><strong>{{todayRecovered}}</strong></span></p>
+                                <p> Active Cases : <span class="text-warning"><strong>{{active}}</strong></span></p>
+    
+                                <div class="row pt-3">
+                                   <form method="post">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger" type="submit" name="add_country" style="color:white; width:200px">Pin Area</button>
+                                    </form>
                                 </div>
-                            </div>
-                        </form>
-                        <div class="detail" style="padding: 1px; font-size: 1.50rem;">
-                            <h3><span id="date" class="text-dark" style="font-size:2rem"></span></h3>
-                            <script>
-                                dt = new Date();
-                                y = dt.getFullYear();
-                                m = dt.getMonth() + 1;
-                                d = dt.getDate();
-                                document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
-                            </script>
-                            {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
-                            <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
-                            <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
-                            <p> New Deaths : <span class="text-dark"><strong>{{newdeaths}}</strong></span></p>
-                            <p> Total Deaths : <span class="text-mudarkted"><strong>{{totaldeaths}}</strong></span></p>
-                            <p> Recovered : <span class="text-success"><strong>{{recovered}}</strong></span></p>
-                            <p> Today Recovered : <span class="text-success"><strong>{{todayRecovered}}</strong></span></p>
-                            <p> Active Cases : <span class="text-warning"><strong>{{active}}</strong></span></p>
-
-                            <div class="row pt-3">
-                               <form method="post">
-                                    {% csrf_token %}
-                                    <button class="btn btn-danger" type="submit" name="run_script" style="color:white; width:200px">Pin Area</button>
-                                </form>
                             </div>
                         </div>
-                        <div class="col pt-2">
+                        <div class="col-4">
+                            <div class="container">
+                                <ul>
+                                    <table>
+                                      <tr>
+                                          <th><h3>Pinned Area</h3></th>
+                                      </tr>
+                                        {% for area in pinnedarea %}
+                                            <tr>
+                                                <td>
+                                                    <form method="post">
+                                                        {% csrf_token %}
+                                                        <div class="row">
+                                                            <b>{{ area }}</b>
+<!--                                                            <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white;">X</button>-->
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
