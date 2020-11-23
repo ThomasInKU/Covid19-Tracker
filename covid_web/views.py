@@ -1,6 +1,7 @@
 """The view configuration for covid-web app."""
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from covid_web.covid_data import CountryCovidData, WorldCovidData, ThailandCovidData
 from covid_web.forms import SignUpForm
@@ -78,7 +79,6 @@ def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
     sheet = Sheet()
-    pinned = str(request.GET.get('pinned', ''))
     country = str(request.GET.get('country', ''))
     user_country = get_location_form_ip(get_user_ip(request))
     user_address = get_user_address(request)
@@ -87,12 +87,12 @@ def details(request):
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
-    else:
-        if pinned:
-            sheet.add_country(request.user.username, country)
-            pinned = False
     if country == "":
         country = user_country
+
+    if request.method == 'POST' and 'run_script' in request.POST:
+        # call function
+        sheet.add_country(request.user.username, country)
 
     context = {
         'name': country,
@@ -109,7 +109,6 @@ def details(request):
         'user_lattitude': user_lattitude,
         'user_longtitude': user_longtitude,
         'ip': get_user_ip(request),
-        'pin': pinned,
     }
     return render(request, 'details.html', context=context)
 

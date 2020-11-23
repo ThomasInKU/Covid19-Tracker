@@ -24,32 +24,33 @@
           </ul>
       </div>
   </nav>
+
 {% endblock %}
 {% block content %}
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-sm p-3">
                 <h2>Covid Map</h2>
-<!--                <script async defer-->
-<!--                    src="https://maps.googleapis.com/maps/api/js?=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE">-->
-<!--                </script>-->
-<!--                <body onload ='start()'>-->
-<!--                    <div id='main' style='min-width: 200px-->
-<!--                        width: 100%;-->
-<!--                        min-height: 200px;-->
-<!--                        height: 90%;-->
-<!--                        border: 1px solid blue; '>-->
-<!--                    </div>-->
-<!--                    <script>-->
-<!--                        var first = null-->
-<!--                        function start(){ -->
-<!--                            var main = document.getElementById('main')-->
-<!--                            var data = { zoom: 6, center: {lat:14, lng:100}}-->
-<!--                            first = new google.maps.Map(main, data)-->
-<!--                            new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})-->
-<!--                        }-->
-<!--                    </script>-->
-<!--                </body>-->
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE">
+                </script>
+                <body onload ='start()'>
+                    <div id='main' style='min-width: 200px
+                        width: 100%;
+                        min-height: 200px;
+                        height: 90%;
+                        border: 1px solid blue; '>
+                    </div>
+                    <script>
+                        var first = null
+                        function start(){ 
+                            var main = document.getElementById('main')
+                            var data = { zoom: 6, center: {lat:14, lng:100}}
+                            first = new google.maps.Map(main, data)
+                            new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
+                        }
+                    </script>
+                </body>
                 <br>
                 <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px">Info</a>
                 <a class="btn btn-warning" href="{% url 'map' %}" style="color:white;">Thailand Map</a>
@@ -104,7 +105,10 @@
                             <p> Active Cases : <span class="text-warning"><strong>{{active}}</strong></span></p>
 
                             <div class="row pt-3">
-                               <a></a>
+                               <form method="post">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger" type="submit" name="run_script" style="color:white; width:200px">Pin Area</button>
+                                </form>
                             </div>
                         </div>
                         <div class="col pt-2">
