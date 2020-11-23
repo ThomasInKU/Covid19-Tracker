@@ -24,7 +24,7 @@ SECRET_KEY = '7_ieibc((3ztfw7%f(v8d^_lp22_&b=-h=@*+=1hobq@b4f6ib'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["covid-tracker-ske17"]
 
 # Application definition
 
