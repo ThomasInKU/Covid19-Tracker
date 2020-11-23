@@ -7,8 +7,7 @@ from covid_web.forms import SignUpForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 import requests
-
-import requests
+from covid_web.sheets import Sheet
 
 
 class MyAuthForm(AuthenticationForm):
@@ -78,16 +77,23 @@ def get_user_address(request):
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    user_country = get_location_form_ip(get_user_ip(request))
+    sheet = Sheet()
+    pinned = str(request.GET.get('pinned', ''))
     country = str(request.GET.get('country', ''))
+    user_country = get_location_form_ip(get_user_ip(request))
     user_address = get_user_address(request)
     user_lattitude = user_address.split(',')[0]
     user_longtitude = user_address.split(',')[1]
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
+    else:
+        if pinned:
+            sheet.add_country(request.user.username, country)
+            pinned = False
     if country == "":
         country = user_country
+
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -102,7 +108,8 @@ def details(request):
         'user_country': user_country,
         'user_lattitude': user_lattitude,
         'user_longtitude': user_longtitude,
-        'ip': get_user_ip(request)
+        'ip': get_user_ip(request),
+        'pin': pinned,
     }
     return render(request, 'details.html', context=context)
 
