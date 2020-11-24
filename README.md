@@ -1,6 +1,9 @@
 # Covid19-Tracker
 [![Build Status](https://travis-ci.com/lisbono2001/Covid19-Tracker.svg?branch=master)](https://travis-ci.com/lisbono2001/Covid19-Tracker) 
 [![codecov](https://codecov.io/gh/lisbono2001/Covid19-Tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/lisbono2001/Covid19-Tracker)
+## URL of the web application
+[See our URL of the web application](https://covid-tracker-ske17.herokuapp.com)    
+
 ## Description
 This is a web-application that can show every Covid-19 case in Thailand 🇹🇭.  
 Users can add Line bot that can be interacted with and send the information to users  (including cases and important information).  
