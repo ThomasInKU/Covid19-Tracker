@@ -32,7 +32,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                    Welcome <b>{{ user.get_username }}
+                    Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_country}}</b> IP: <b>{{ip}}</b><br>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -50,6 +50,7 @@
 {% block content %}
 <div class="container p-5">
     <div class="text-warning"><h1><b>Situation in Thailand</h1></b></div>
+    <h3> Your Location: <b>{{ user_province }}</b></h3>
     <h3>Province: <b>{{province}}</b></h3>
     <div class="text-danger"><h3>Total Cases: <b>{{totalconfirm}}</b></h3></div>
     <div class="mapdiv">

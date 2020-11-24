@@ -54,7 +54,7 @@ def get_location_form_ip(ip):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = requests.get(url)
     response.raise_for_status()
-    return response.json()["country_name"]
+    return response.json()
 
 
 def get_user_ip(request):
@@ -80,7 +80,7 @@ def details(request):
     cd = CountryCovidData()
     sheet = Sheet(request.user.username)
     country = str(request.GET.get('country', ''))
-    user_country = get_location_form_ip(get_user_ip(request))
+    user_country = get_location_form_ip(get_user_ip(request))["country_name"]
     user_address = get_user_address(request)
     user_lattitude = user_address.split(',')[0]
     user_longtitude = user_address.split(',')[1]
@@ -93,7 +93,6 @@ def details(request):
         sheet.add_country(country)
     if request.method == 'POST' and 'delete_country' in request.POST:
         sheet.delete_cell(country)
-
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -140,5 +139,6 @@ def map(request):
     cd = ThailandCovidData()
     province = str(request.GET.get('province', ''))
     context = {'totalconfirm': "{:,}".format(cd.get_result(province)),
-               'province': province, }
+               'province': province, 
+               'ip': get_user_ip(request)}
     return render(request, 'th_map.html', context=context)
