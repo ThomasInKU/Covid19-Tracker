@@ -22,7 +22,7 @@ class Sheet:
             return cell.row
         except:
             row = self.next_available_row()
-            self.create_new_user(self.username)
+            self.create_new_user()
             return row
 
     def next_available_row(self):
