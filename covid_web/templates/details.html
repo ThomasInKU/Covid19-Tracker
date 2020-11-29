@@ -32,10 +32,10 @@
             <div class="col-sm p-3">
                 <h2>Covid Map</h2>
                 <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE">
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE&callback=initMap">
                 </script>
                 <body onload ='start()'>
-                    <div id='main' style='min-width: 200px
+                    <div id='main' style='min-width: 200px;
                         width: 100%;
                         min-height: 200px;
                         height: 90%;
@@ -45,7 +45,8 @@
                         var first = null
                         function start(){ 
                             var main = document.getElementById('main')
-                            var data = { zoom: 6, center: {lat:14, lng:100}}
+                            //var data = { zoom: 6, center: {lat:14, lng:100}}
+                            var data = { zoom: 6, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
                             first = new google.maps.Map(main, data)
                             new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
                         }
