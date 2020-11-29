@@ -37,6 +37,7 @@ class Sheet:
                     return i
             except:
                 return i
+        return 10
 
     def create_new_user(self):
         latestrow = self.next_available_row()
@@ -49,7 +50,7 @@ class Sheet:
         col = self.next_available_col(row)
         if self.sheet.row_values(row).__contains__(country):  # already pinned
             return status
-        if int(col) < 8:
+        if col < 8:
             self.sheet.update_cell(row, col, country)
             status = True
         return status

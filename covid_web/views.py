@@ -98,6 +98,7 @@ def details(request):
         # first load of the web page
         uf.user_ip, uf.user_lattitude, uf.user_longtitude = get_user_ip(request)
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
+        country = uf.user_country
         uf.sheet = Sheet(request.user.username)
         uf.pinned = uf.sheet.call_countries()
     if request.method == 'POST' and 'add_country' in request.POST:
@@ -107,6 +108,8 @@ def details(request):
         area = request.GET.get('area', '')
         uf.sheet.delete_cell(area)
         uf.pinned = uf.sheet.call_countries()
+    if request.method == 'GET' and 'jump' in request.GET:
+        country = request.GET.get('area', '')
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -156,5 +159,6 @@ def map(request):
     province = str(request.GET.get('province', ''))
     context = {'totalconfirm': "{:,}".format(td.get_result(province)),
                'province': province,
+               'location' : uf.user_country,
                'ip': uf.user_ip}
     return render(request, 'th_map.html', context=context)

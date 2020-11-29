@@ -30,8 +30,8 @@
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-sm p-3">
-                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px; height:50px;">Info</a>
-                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white; width:130px; height:50px;">Thailand Map</a>
+                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px; height:50px;"><b>Info</b></a>
+                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white; width:130px; height:50px;"><b>Thailand Map</b></a>
                 <br>
                 <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE&callback=initMap">
@@ -47,8 +47,7 @@
                         var first = null
                         function start(){ 
                             var main = document.getElementById('main')
-                            //var data = { zoom: 6, center: {lat:14, lng:100}}
-                            var data = { zoom: 6, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
+                            var data = { zoom: 5, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
                             first = new google.maps.Map(main, data)
                             new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
                         }
@@ -125,10 +124,10 @@
                                                 <td>
                                                     <form method="get">
                                                         <div class="row">
-                                                            <b>{{ area }}</b>
-                                                            <input name="area" type="hidden" value="{{ area }}"/>
-                                                            {% if area != '' %} 
-                                                            <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white; width:100px">X</button>
+                                                            {% if area != '' %}
+                                                                <a href="?country={{ area }}" name="jump" style="color:0072FF; text-decoration: none;"><b>{{ area }}</b></a>
+                                                                <input name="area" type="hidden" value="{{ area }}"/>
+                                                                <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white; width:45px">X</button>
                                                             {% endif %}
                                                         </div>
                                                     </form>
