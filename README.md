@@ -13,8 +13,7 @@ Most benefit of this application is users can get information about Covid-19 thr
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install django and social-auth-app-django.
 
 ```bash
-pip install django
-pip install social-auth-app-django
+python3 pip install -r requirements.txt
 ```
 ### Getting Start
 
