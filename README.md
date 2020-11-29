@@ -10,27 +10,58 @@ Users can add Line bot that can be interacted with and send the information to u
 Most benefit of this application is users can get information about Covid-19 through Line bot and on web-page.
 
 ### Installation
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install python modules in requirements.txt file.
+First you need to install virtualenv and pip
+* #### Windows
 
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install virtualenv
 ```
-### Getting Start
+* #### Linux/Macos
+```bash
+python3 -m pip install --upgrade pip
+python3 -m pip install virtualenv
+```
 
+### Getting Start
+1.Clone Covid19-Tracker repository to your local machine and navigate to the project directory
 ```shell
 git clone https://github.com/lisbono2001/Covid19-Tracker.git
 cd Covid19-Tracker/
 ```
-for MacOS and Linux
+2.Create virtual environment and activate it.
+* #### Windows
 ```bash
-python3 manage.py runserver //for MacOS's python version 3.x
+virtualenv env
+env\Scripts\activate
+```
+* #### Linux/Macos
+```bash
+virtualenv venv
+source venv/bin/activate
+```
+3.Install all required software included in requirements.txt
+```bash
+pip install -r requirements.txt
+```
+4.Migrations
+* #### Windows
+```bash
+python manage.py migrate
+```
+* #### Linux/Macos
+```bash
+python3 manage.py migrate
+```
+5.Run the server
+* #### Windows
+```bash
 python manage.py runserver
 ```
-for Windows
+* #### Linux/Macos
 ```bash
-py manage.py runserver
+python3 manage.py runserver
 ```
-
 ## Contributing
 Every pull requests are welcome. Please open an issue first to discuss what you would like to change.  [Read the contribution](contributing.md)
 
