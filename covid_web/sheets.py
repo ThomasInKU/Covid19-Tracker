@@ -34,10 +34,9 @@ class Sheet:
         return str(len(str_list) + 1)
 
     def create_new_user(self):
-        if self.find_username() == 0:
-            latestrow = self.next_available_row()
-            insertrow = [self.username, str(datetime.datetime.now())]
-            self.sheet.append_row(insertrow, table_range=f"A{latestrow}")
+        latestrow = self.next_available_row()
+        insertrow = [self.username, str(datetime.datetime.now())]
+        self.sheet.append_row(insertrow, table_range=f"A{latestrow}")
 
     def add_country(self, country):
         status = False
