@@ -9,18 +9,20 @@ This is a web-application that can show every Covid-19 case in Thailand 🇹🇭
 Users can add Line bot that can be interacted with and send the information to users  (including cases and important information).  
 Most benefit of this application is users can get information about Covid-19 through Line bot and on web-page.
 
-### Installation
+### Getting Start
+```shell
+git clone https://github.com/lisbono2001/Covid19-Tracker.git
+cd Covid19-Tracker/
+```
+### Installation the package
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install python modules in requirements.txt file.
 
 ```bash
 pip install -r requirements.txt
 ```
-### Getting Start
+### Run server
 
-```shell
-git clone https://github.com/lisbono2001/Covid19-Tracker.git
-cd Covid19-Tracker/
-```
+
 for MacOS and Linux
 ```bash
 python3 manage.py runserver //for MacOS's python version 3.x
