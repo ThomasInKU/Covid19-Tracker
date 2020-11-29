@@ -30,8 +30,13 @@ class Sheet:
         return str(len(str_list) + 1)
 
     def next_available_col(self, row):
-        str_list = list(filter(None, self.sheet.row_values(int(row))))
-        return str(len(str_list) + 1)
+        # str_list = list(filter(None, self.sheet.row_values(int(row))))
+        for i in range(3, 8):
+            try:
+                if str(self.sheet.cell(row, i).value) == '':
+                    return i
+            except:
+                return i
 
     def create_new_user(self):
         latestrow = self.next_available_row()
@@ -57,7 +62,5 @@ class Sheet:
     def delete_cell(self, country):
         row = self.find_username()
         for i in range(3, 8):
-            if self.sheet.cell(row, i).value == str(country):
-                self.sheet.update_cell(row, i, '')
-                return True
-        return False
+            if str(self.sheet.cell(row, i).value) == str(country):
+                self.sheet.update_cell(row, i, "")

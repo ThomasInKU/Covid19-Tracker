@@ -30,7 +30,9 @@
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-sm p-3">
-                <h2>Covid Map</h2>
+                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px; height:50px;">Info</a>
+                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white; width:130px; height:50px;">Thailand Map</a>
+                <br>
                 <script async defer
                     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE&callback=initMap">
                 </script>
@@ -52,9 +54,6 @@
                         }
                     </script>
                 </body>
-                <br>
-                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px">Info</a>
-                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white;">Thailand Map</a>
             </div>
 
             <div class="col">
@@ -124,11 +123,13 @@
                                         {% for area in pinnedarea %}
                                             <tr>
                                                 <td>
-                                                    <form method="post">
-                                                        {% csrf_token %}
+                                                    <form method="get">
                                                         <div class="row">
                                                             <b>{{ area }}</b>
-<!--                                                            <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white;">X</button>-->
+                                                            <input name="area" type="hidden" value="{{ area }}"/>
+                                                            {% if area != '' %} 
+                                                            <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white; width:100px">X</button>
+                                                            {% endif %}
                                                         </div>
                                                     </form>
                                                 </td>

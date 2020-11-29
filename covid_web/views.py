@@ -41,6 +41,18 @@ class MyLoginView(auth_views.LoginView):
         return context
 
 
+class User_info:
+    """Class for initialize values of detail page"""
+
+    def __init__(self):
+        self.user_ip = ""
+        self.user_country = ""
+        self.user_lattitude = ""
+        self.user_longtitude = ""
+        self.sheet = ""
+        self.pinned = ""
+
+
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -64,31 +76,37 @@ def get_user_ip(request):
     location = data['loc'].split(',')
     latti = location[0]
     longti = location[1]
-    return ip,latti,longti
+    return ip, latti, longti
+
+
+def get_address_from_country(country):
+    pass
+
 
 cd = CountryCovidData()
+uf = User_info()
+
 
 @login_required()
 def details(request):
-    user_country = ""
     """Get data from user and show data from that country."""
     country = str(request.GET.get('country', ''))
-    user_ip, user_lattitude, user_longtitude = get_user_ip(request)
-    sheet = Sheet(request.user.username)
-    contries = sheet.call_countries()
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
     if country == "":
-        user_country = get_location_form_ip(user_ip)["country_name"]
-        country = user_country
-        contries = sheet.call_countries()
+        # first load of the web page
+        uf.user_ip, uf.user_lattitude, uf.user_longtitude = get_user_ip(request)
+        uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
+        uf.sheet = Sheet(request.user.username)
+        uf.pinned = uf.sheet.call_countries()
     if request.method == 'POST' and 'add_country' in request.POST:
-        sheet.add_country(country)
-        contries = sheet.call_countries()
-    if request.method == 'POST' and 'delete_country' in request.POST:
-        sheet.delete_cell(country)
-        contries = sheet.call_countries()
+        uf.sheet.add_country(country)
+        uf.pinned = uf.sheet.call_countries()
+    if request.method == 'GET' and 'delete_country' in request.GET:
+        area = request.GET.get('area', '')
+        uf.sheet.delete_cell(area)
+        uf.pinned = uf.sheet.call_countries()
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -100,11 +118,11 @@ def details(request):
         'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
-        'user_country': user_country,
-        'user_lattitude': user_lattitude,
-        'user_longtitude': user_longtitude,
-        'ip': user_ip,
-        'pinnedarea' : contries,
+        'user_country': uf.user_country,
+        'user_lattitude': uf.user_lattitude,
+        'user_longtitude': uf.user_longtitude,
+        'ip': uf.user_ip,
+        'pinnedarea': uf.pinned,
     }
     return render(request, 'details.html', context=context)
 
@@ -130,11 +148,13 @@ def prevent(request):
     return render(request, 'prevent.html', context=context)
 
 
+td = ThailandCovidData()
+
+@login_required()
 def map(request):
     """Render prevent page."""
-    cd = ThailandCovidData()
     province = str(request.GET.get('province', ''))
-    context = {'totalconfirm': "{:,}".format(cd.get_result(province)),
-               'province': province, 
-               'ip': get_user_ip(request)}
+    context = {'totalconfirm': "{:,}".format(td.get_result(province)),
+               'province': province,
+               'ip': uf.user_ip}
     return render(request, 'th_map.html', context=context)
