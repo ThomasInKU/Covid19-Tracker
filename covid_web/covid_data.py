@@ -243,7 +243,7 @@ class CountryCovidData:
 
     def find_country_code(self, country_name):
         """Return the country object data."""
-        for i in range(290):
+        for i in range(999):
             if country_name == self.data[i]["country"]:
                 return i
 
@@ -268,3 +268,20 @@ class WorldCovidData:
     def get_result(self, case):
         """Get the result data by the case name."""
         return self.world_today[case]
+
+class ThailandCovidData:
+    
+    def __init__(self):
+        self.thailand = self.get_data()
+        
+    def get_data(self):
+        """Get the data in Json from the API web."""
+        world_covid_api = "https://covid19.th-stat.com/api/open/cases/sum"
+        return requests.get(world_covid_api).json()
+    
+    def get_result(self, province):
+        """Get the result data by the case name."""
+        try:
+            return int(self.thailand["Province"][province])
+        except:
+            return 0

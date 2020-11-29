@@ -2,7 +2,6 @@
 
 {% block title %}<title>Covid19 Tracker Country</title>{% endblock %}
 
-
 {% block navbar %}
   <nav class="navbar navbar-expand-md navbar-light bg-light" style="padding:1%">
       <a class="navbar-brand" href="#">
@@ -15,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }} user: {{user_country}} ip: {{ip}}</b>
+                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_country}}</b> IP: <b>{{ip}}</b><br>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -25,43 +24,47 @@
           </ul>
       </div>
   </nav>
+
 {% endblock %}
 {% block content %}
     <div class="container-fluid p-4">
         <div class="row">
             <div class="col-sm p-3">
-                <h2>Covid Map</h2>
+                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px; height:50px;"><b>Info</b></a>
+                <a class="btn btn-warning" href="{% url 'map' %}" style="color:white; width:130px; height:50px;"><b>Thailand Map</b></a>
+                <br>
                 <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE">
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDr-eXifZSnrqd9SPpoG4qYj1Owg6X5eRE&callback=initMap">
                 </script>
-                </head>
                 <body onload ='start()'>
                     <div id='main' style='min-width: 200px;
-                    width: 100%;
-                    min-height: 200px;
-                    height: 90%;
-                    border: 1px solid blue; '>
+                        width: 100%;
+                        min-height: 200px;
+                        height: 90%;
+                        border: 1px solid blue; '>
                     </div>
                     <script>
                         var first = null
                         function start(){ 
                             var main = document.getElementById('main')
-                            var data = { zoom: 6, center: {lat:14, lng:100}}
+                            var data = { zoom: 5, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
                             first = new google.maps.Map(main, data)
-                            new google.maps.Marker({map: first, position:{lat:13.755824,lng:100.567428 }})
+                            new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
                         }
                     </script>
-                <br>
-                <a class="btn btn-info" href="{% url 'prevent' %}" style="color:white; width:100px">Info</a>
+                </body>
             </div>
 
             <div class="col">
                 <div class="container bg-light p-5">
                     <h2><b>Welcome to Covid-19 Tracker</b></h2>
                     <div class="row pt-2">
+                        <div class="col-8">
                             <form action="/country">
-                                {% if name == '' %} <h3 style='color: red'> Let's find your Interested area</h3> {%endif%}
-                                
+                                {% if name == '' %} 
+                                    <h3 style='color: red'> Let's find your Interested area</h3>
+                                    <h3>Your Location: {{user_country}}</h3>
+                                {%endif%}
                                 {% if error_warning %} <h3 style='color: red'> Can't find your country </h3> {%endif%}
                                 
                                 <a><strong>Please search your country: </strong></a><br>
@@ -84,7 +87,7 @@
                                 </div>
                             </form>
                             <div class="detail" style="padding: 1px; font-size: 1.50rem;">
-                                <p><span id="date" class="text-dark" style="font-size:1rem"></span></p>
+                                <h3><span id="date" class="text-dark" style="font-size:2rem"></span></h3>
                                 <script>
                                     dt = new Date();
                                     y = dt.getFullYear();
@@ -100,13 +103,40 @@
                                 <p> Recovered : <span class="text-success"><strong>{{recovered}}</strong></span></p>
                                 <p> Today Recovered : <span class="text-success"><strong>{{todayRecovered}}</strong></span></p>
                                 <p> Active Cases : <span class="text-warning"><strong>{{active}}</strong></span></p>
-
-
+    
                                 <div class="row pt-3">
+                                   <form method="post">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger" type="submit" name="add_country" style="color:white; width:200px">Pin Area</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="col pt-2">
+                        <div class="col-4">
+                            <div class="container-fluid">
+                                <ul>
+                                    <table>
+                                      <tr>
+                                          <th><h3>Pinned Area</h3></th>
+                                      </tr>
+                                        {% for area in pinnedarea %}
+                                            <tr>
+                                                <td>
+                                                    <form method="get">
+                                                        <div class="row">
+                                                            {% if area != '' %}
+                                                                <a href="?country={{ area }}" name="jump" style="color:0072FF; text-decoration: none;"><b>{{ area }}</b></a>
+                                                                <input name="area" type="hidden" value="{{ area }}"/>
+                                                                <button class="btn btn-danger centred" type="submit" name="delete_country" style="color:white; width:45px">X</button>
+                                                            {% endif %}
+                                                        </div>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
