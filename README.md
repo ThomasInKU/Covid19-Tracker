@@ -10,7 +10,7 @@ Users can add Line bot that can be interacted with and send the information to u
 Most benefit of this application is users can get information about Covid-19 through Line bot and on web-page.
 
 ### Installation
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install django and social-auth-app-django.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install python modules in requirements.txt file.
 
 ```bash
 python3 pip install -r requirements.txt
