@@ -13,7 +13,7 @@ Most benefit of this application is users can get information about Covid-19 thr
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install python modules in requirements.txt file.
 
 ```bash
-python3 pip install -r requirements.txt
+pip install -r requirements.txt
 ```
 ### Getting Start
 
