@@ -5,7 +5,7 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.http import urlencode
 from covid_web.covid_data import CountryCovidData, WorldCovidData
-from covid_web.views import get_user_country_form_ip
+from covid_web.views import get_location_form_ip
 
 def my_reverse(viewname, kwargs=None, query_kwargs=None):
     """
@@ -25,15 +25,6 @@ class IndexPageTest(TestCase):
         """set up method for set everythings that use in test"""
         User.objects.create_user(username='bhatara007', password='ddddd007')
         self.client.login(username='bhatara007', password='ddddd007')
-
-    def test_blank_detail_page(self):
-        """
-        test 'Let's find your Interesting area' text show
-        when user not select their area
-        """
-        url = reverse('details')
-        response = self.client.get(url)
-        self.assertContains(response, "Let's find your Interested area")
 
     def test_details_page_display_correctly(self):
         """
@@ -57,7 +48,7 @@ class IndexPageTest(TestCase):
         """
         my_current_ip = '49.229.136.171'
         my_current_country = "Thailand"
-        self.assertEqual(my_current_country, get_user_country_form_ip(my_current_ip))
+        self.assertEqual(my_current_country, get_location_form_ip(my_current_ip)["country_name"])
 
     def test_prevent_page(self):
         url = reverse('prevent')
