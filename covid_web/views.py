@@ -63,36 +63,32 @@ def get_user_ip(request):
     ip = data['ip']
     location = data['loc'].split(',')
     latti = location[0]
-    longti = location
-    return ip
+    longti = location[1]
+    return ip,latti,longti
 
-
-def get_user_address(request):
-    res = requests.get('https://ipinfo.io/')
-    data = res.json()
-    location = data['loc']
-    return location
-
+cd = CountryCovidData()
 
 @login_required()
 def details(request):
+    user_country = ""
     """Get data from user and show data from that country."""
-    cd = CountryCovidData()
-    sheet = Sheet(request.user.username)
     country = str(request.GET.get('country', ''))
-    user_country = get_location_form_ip(get_user_ip(request))["country_name"]
-    user_address = get_user_address(request)
-    user_lattitude = user_address.split(',')[0]
-    user_longtitude = user_address.split(',')[1]
+    user_ip, user_lattitude, user_longtitude = get_user_ip(request)
+    sheet = Sheet(request.user.username)
+    contries = sheet.call_countries()
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
     if country == "":
+        user_country = get_location_form_ip(user_ip)["country_name"]
         country = user_country
+        contries = sheet.call_countries()
     if request.method == 'POST' and 'add_country' in request.POST:
         sheet.add_country(country)
+        contries = sheet.call_countries()
     if request.method == 'POST' and 'delete_country' in request.POST:
         sheet.delete_cell(country)
+        contries = sheet.call_countries()
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -107,8 +103,8 @@ def details(request):
         'user_country': user_country,
         'user_lattitude': user_lattitude,
         'user_longtitude': user_longtitude,
-        'ip': get_user_ip(request),
-        'pinnedarea': sheet.call_countries(),
+        'ip': user_ip,
+        'pinnedarea' : contries,
     }
     return render(request, 'details.html', context=context)
 
