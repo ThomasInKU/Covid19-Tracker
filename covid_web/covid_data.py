@@ -285,6 +285,3 @@ class ThailandCovidData:
             return int(self.thailand["Province"][province])
         except:
             return 0
-
-cd = ThailandCovidData()
-print(cd.get_result("Bangkok"))
