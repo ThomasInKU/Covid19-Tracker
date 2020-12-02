@@ -69,14 +69,14 @@ def get_location_form_ip(ip):
     return response.json()
 
 
-def get_user_ip(request):
-    res = requests.get('https://ipinfo.io/')
-    data = res.json()
-    ip = data['ip']
-    location = data['loc'].split(',')
-    latti = location[0]
-    longti = location[1]
-    return ip, latti, longti
+# def get_user_ip(request):
+#     res = requests.get('https://ipinfo.io/')
+#     data = res.json()
+#     ip = data['ip']
+#     location = data['loc'].split(',')
+#     latti = location[0]
+#     longti = location[1]
+#     return ip, latti, longti
 
 
 def get_address_from_country(country):
@@ -96,7 +96,9 @@ def details(request):
         error_warning = True
     if country == "":
         # first load of the web page
-        uf.user_ip, uf.user_lattitude, uf.user_longtitude = get_user_ip(request)
+        uf.user_ip, uf.user_lattitude, = get_client_ip(request)
+        uf.user_lattitude = get_location_form_ip()["latitude"]
+        uf.user_longtitude = get_location_form_ip()["longitude"]
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
         uf.sheet = Sheet(request.user.username)
