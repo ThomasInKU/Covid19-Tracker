@@ -96,9 +96,9 @@ def details(request):
         error_warning = True
     if country == "":
         # first load of the web page
-        uf.user_ip, uf.user_lattitude, = get_client_ip(request)
-        uf.user_lattitude = get_location_form_ip()["latitude"]
-        uf.user_longtitude = get_location_form_ip()["longitude"]
+        uf.user_ip = get_client_ip(request)
+        uf.user_lattitude = get_location_form_ip(uf.user_ip)["latitude"]
+        uf.user_longtitude = get_location_form_ip(uf.user_ip)["longitude"]
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
         uf.sheet = Sheet(request.user.username)
