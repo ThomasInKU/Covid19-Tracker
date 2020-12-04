@@ -92,7 +92,6 @@ Every pull requests are welcome. Please open an issue first to discuss what you 
 * [Google Doc of CovidTracker Bot](https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing)
 * [Code Review Checklist](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Checklist)
 * [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)  
-* [Web link](https://covidtracker-isp.herokuapp.com/)
   For deeper detail, be sure to check out [the wiki documentation](https://github.com/lisbono2001/Covid19-Tracker/wiki).
 
 ### License
