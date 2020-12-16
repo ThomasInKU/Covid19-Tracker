@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -110,7 +109,8 @@ SOCIAL_AUTH_PIPELINE = (  # new
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-utnv1o2ivrii9s0r98q8ahptm9eoan41.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-utnv1o2ivrii9s0r98q' \
+                                '8ahptm9eoan41.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KXdt3bjY93q_4jVjdLB6Aw7M'
 
 SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822'
