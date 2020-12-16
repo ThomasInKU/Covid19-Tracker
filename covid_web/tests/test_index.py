@@ -5,9 +5,10 @@ from django.urls import reverse
 
 
 class IndexPageTest(TestCase):
+    """Index page test."""
 
     def test_world_detail_display_correctly(self):
-        """test the covid data displays on details page correctly"""
+        """Test the covid data displays on details page correctly."""
         cd = WorldCovidData()
         url = reverse('index')
         response = self.client.get(url)
@@ -21,6 +22,7 @@ class IndexPageTest(TestCase):
         self.assertContains(response, new_deaths)
 
     def test_can_access_sign_up_page(self):
+        """Test can access sign up page."""
         url = reverse('signup')
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
