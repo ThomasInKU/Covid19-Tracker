@@ -45,7 +45,7 @@ class Sheet:
             insertrow = [self.username, str(datetime.datetime.now())]
             self.sheet.append_row(insertrow, table_range=f"A{latestrow}")
         except Exception:
-            create_new_user(self)
+            self.create_new_user()
 
     def add_country(self, country):
         try:
@@ -59,7 +59,7 @@ class Sheet:
                 status = True
             return status
         except Exception:
-            add_country(self, country)
+            self.add_country(country)
 
     def call_countries(self):
         try:
@@ -67,7 +67,7 @@ class Sheet:
             countries = self.sheet.row_values(row)[2:]
             return countries
         except Exception:
-            call_countries(self)
+            self.call_countries()
 
     def delete_cell(self, country):
         try:
@@ -76,4 +76,4 @@ class Sheet:
                 if str(self.sheet.cell(row, i).value) == str(country):
                     self.sheet.update_cell(row, i, "")
         except Exception:
-            delete_cell(self, country)
+            self.delete_cell(country)
