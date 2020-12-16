@@ -53,15 +53,6 @@ class User_info:
         self.pinned = ""
 
 
-def get_client_ip(request):
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    return ip
-
-
 def get_location_form_ip(ip):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = requests.get(url)
@@ -77,10 +68,6 @@ def get_user_ip(request):
     latti = location[0]
     longti = location[1]
     return ip, latti, longti
-
-
-def get_address_from_country(country):
-    pass
 
 
 cd = CountryCovidData()
