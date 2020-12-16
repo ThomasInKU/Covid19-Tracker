@@ -51,7 +51,6 @@ class User_info:
         self.user_longtitude = ""
         
 
-
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -59,7 +58,6 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
-
 
 
 def get_location_form_ip(ip):
@@ -89,10 +87,10 @@ def details(request):
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
     if request.method == 'POST' and 'add_country' in request.POST:
-        uf.sheet.add_country(country)
+        sheet.add_country(country)
     if request.method == 'GET' and 'delete_country' in request.GET:
         area = request.GET.get('area', '')
-        uf.sheet.delete_cell(area)
+        sheet.delete_cell(area)
     if request.method == 'GET' and 'jump' in request.GET:
         country = request.GET.get('area', '')
     context = {
@@ -129,7 +127,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-@login_required()
+
 def prevent(request):
     """Render prevent page."""
     context = {}
