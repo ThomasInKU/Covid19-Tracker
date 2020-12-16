@@ -19,7 +19,7 @@ class IndexPageTest(TestCase):
         self.assertContains(response, today_case)
         self.assertContains(response, deaths)
         self.assertContains(response, new_deaths)
-    
+
     def test_can_access_sign_up_page(self):
         url = reverse('signup')
         response = self.client.get(url)
