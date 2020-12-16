@@ -66,6 +66,11 @@ def get_location_form_ip(ip):
     response.raise_for_status()
     return response.json()
 
+def create_sheet(request):
+    try:
+        return Sheet(request.user.username)
+    except Exception:
+        create_sheet(request)
 
 cd = CountryCovidData()
 uf = User_info()
@@ -76,10 +81,7 @@ def details(request):
     """Get data from user and show data from that country."""
     country = str(request.GET.get('country', ''))
     error_warning = False
-    try:
-        sheet = Sheet(request.user.username)
-    except Exception:
-        return redirect('details')
+    sheet = create_sheet(request)
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
     if country == "":
@@ -90,22 +92,12 @@ def details(request):
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
     if request.method == 'POST' and 'add_country' in request.POST:
-        try:
-            sheet.add_country(country)
-        except Exception:
-            return redirect('details')
+        sheet.add_country(sheet,country)
     if request.method == 'GET' and 'delete_country' in request.GET:
         area = request.GET.get('area', '')
-        try:
-            sheet.delete_cell(area)
-        except Exception:
-            return redirect('details')
+        sheet.delete_cell(sheet,area)
     if request.method == 'GET' and 'jump' in request.GET:
         country = request.GET.get('area', '')
-    try:
-        pinned = sheet.call_countries()
-    except Exception:
-        return redirect('details')
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
@@ -121,7 +113,7 @@ def details(request):
         'user_lattitude': uf.user_lattitude,
         'user_longtitude': uf.user_longtitude,
         'ip': uf.user_ip,
-        'pinnedarea': pinned,
+        'pinnedarea': sheet.call_countries(),
     }
     return render(request, 'details.html', context=context)
 
