@@ -93,19 +93,19 @@ def details(request):
         try:
             sheet.add_country(country)
         except Exception:
-            return redirect('covid_web:details')
+            return redirect('details')
     if request.method == 'GET' and 'delete_country' in request.GET:
         area = request.GET.get('area', '')
         try:
             sheet.delete_cell(area)
         except Exception:
-            return redirect('covid_web:details')
+            return redirect('details')
     if request.method == 'GET' and 'jump' in request.GET:
         country = request.GET.get('area', '')
     try:
         pinned = sheet.call_countries()
     except Exception:
-        return redirect('covid_web:details')
+        return redirect('details')
     context = {
         'name': country,
         'country_name': list(cd.country.keys()),
