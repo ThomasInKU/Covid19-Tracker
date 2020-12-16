@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 from django.utils.http import urlencode
-from covid_web.covid_data import CountryCovidData, WorldCovidData
-from covid_web.views import get_location_form_ip
+from covid_web.covid_data import CountryCovidData, ThailandCovidData
+from covid_web.views import get_location_form_ip, get_user_ip
 
 def my_reverse(viewname, kwargs=None, query_kwargs=None):
     """
@@ -54,5 +54,22 @@ class IndexPageTest(TestCase):
         url = reverse('prevent')
         response = self.client.get(url)
         self.assertEqual(200, response.status_code)
+
+    def test_map_can_access(self):
+        url = reverse('map')
+        response = self.client.get(url)
+        self.assertEqual(200, response.status_code)
+
+    def test_details_show_in_map_correctly(self):
+        test_province = "Nan"
+        url = my_reverse('map', kwargs=None, query_kwargs={'province': test_province
+            })
+        td = ThailandCovidData()
+        data = "{:,}".format(td.get_result(test_province))
+        response = self.client.get(url)
+        self.assertContains(response, data)
+        
+        
+    
     
 
