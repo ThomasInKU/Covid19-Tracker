@@ -216,5 +216,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/country/'
 LOGOUT_REDIRECT_URL = '/'
-
-django_heroku.settings(locals())
