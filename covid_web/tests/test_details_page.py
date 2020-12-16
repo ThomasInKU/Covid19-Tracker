@@ -5,7 +5,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils.http import urlencode
 from covid_web.covid_data import CountryCovidData, ThailandCovidData
-from covid_web.views import get_location_form_ip, get_user_ip
+from covid_web.views import get_location_form_ip, get_client_ip
+
 
 def my_reverse(viewname, kwargs=None, query_kwargs=None):
     """
@@ -20,6 +21,7 @@ def my_reverse(viewname, kwargs=None, query_kwargs=None):
 
     return url
 
+
 class IndexPageTest(TestCase):
     def setUp(self):
         """set up method for set everythings that use in test"""
@@ -33,8 +35,8 @@ class IndexPageTest(TestCase):
         """
         test_country = 'Thailand'
         cd = CountryCovidData()
-        url = my_reverse('details', kwargs=None, query_kwargs={'country': 
-            test_country})
+        url = my_reverse('details', kwargs=None, query_kwargs={'country':
+                                                                   test_country})
         response = self.client.get(url)
         self.assertContains(response, "{:,}".format(cd.get_result("cases", "Thailand")))
         self.assertContains(response, "{:,}".format(cd.get_result("todayCases", "Thailand")))
@@ -63,13 +65,10 @@ class IndexPageTest(TestCase):
     def test_details_show_in_map_correctly(self):
         test_province = "Nan"
         url = my_reverse('map', kwargs=None, query_kwargs={'province': test_province
-            })
+                                                           })
         td = ThailandCovidData()
         data = "{:,}".format(td.get_result(test_province))
         response = self.client.get(url)
         self.assertContains(response, data)
-        
-        
-    
-    
+
 
