@@ -92,10 +92,10 @@ def details(request):
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
     if request.method == 'POST' and 'add_country' in request.POST:
-        sheet.add_country(sheet,country)
+        sheet.add_country(country)
     if request.method == 'GET' and 'delete_country' in request.GET:
         area = request.GET.get('area', '')
-        sheet.delete_cell(sheet,area)
+        sheet.delete_cell(area)
     if request.method == 'GET' and 'jump' in request.GET:
         country = request.GET.get('area', '')
     context = {
