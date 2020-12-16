@@ -11,3 +11,4 @@ omit =
     covid_web/migrations/
     covid_web/forms.py/
     covid_web/sheets.py/
+    
