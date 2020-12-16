@@ -110,10 +110,8 @@ SOCIAL_AUTH_PIPELINE = (  # new
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = \
-    '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.' \
-    'apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HfhwDcXhbyGhWMtHcEiIeFOv'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-utnv1o2ivrii9s0r98q8ahptm9eoan41.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KXdt3bjY93q_4jVjdLB6Aw7M'
 
 SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822'
 SOCIAL_AUTH_GITHUB_SECRET = '914f07f8cda7b923489a489b4dd7ac29f1688723'

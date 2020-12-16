@@ -127,7 +127,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-
+@login_required()
 def prevent(request):
     """Render prevent page."""
     context = {}
