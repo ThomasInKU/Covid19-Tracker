@@ -49,8 +49,15 @@ class User_info:
         self.user_country = ""
         self.user_lattitude = ""
         self.user_longtitude = ""
-        self.sheet = ""
-        self.pinned = ""
+        
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 def get_location_form_ip(ip):
@@ -58,16 +65,6 @@ def get_location_form_ip(ip):
     response = requests.get(url)
     response.raise_for_status()
     return response.json()
-
-
-def get_user_ip(request):
-    res = requests.get('https://ipinfo.io/')
-    data = res.json()
-    ip = data['ip']
-    location = data['loc'].split(',')
-    latti = location[0]
-    longti = location[1]
-    return ip, latti, longti
 
 
 cd = CountryCovidData()
@@ -79,22 +76,21 @@ def details(request):
     """Get data from user and show data from that country."""
     country = str(request.GET.get('country', ''))
     error_warning = False
+    sheet = Sheet(request.user.username)
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
     if country == "":
         # first load of the web page
-        uf.user_ip, uf.user_lattitude, uf.user_longtitude = get_user_ip(request)
+        uf.user_ip = get_client_ip(request)
+        uf.user_lattitude = get_location_form_ip(uf.user_ip)["latitude"]
+        uf.user_longtitude = get_location_form_ip(uf.user_ip)["longitude"]
         uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
         country = uf.user_country
-        uf.sheet = Sheet(request.user.username)
-        uf.pinned = uf.sheet.call_countries()
     if request.method == 'POST' and 'add_country' in request.POST:
-        uf.sheet.add_country(country)
-        uf.pinned = uf.sheet.call_countries()
+        sheet.add_country(country)
     if request.method == 'GET' and 'delete_country' in request.GET:
         area = request.GET.get('area', '')
-        uf.sheet.delete_cell(area)
-        uf.pinned = uf.sheet.call_countries()
+        sheet.delete_cell(area)
     if request.method == 'GET' and 'jump' in request.GET:
         country = request.GET.get('area', '')
     context = {
@@ -112,7 +108,7 @@ def details(request):
         'user_lattitude': uf.user_lattitude,
         'user_longtitude': uf.user_longtitude,
         'ip': uf.user_ip,
-        'pinnedarea': uf.pinned,
+        'pinnedarea': sheet.call_countries(),
     }
     return render(request, 'details.html', context=context)
 
