@@ -79,7 +79,7 @@ def details(request):
     try:
         sheet = Sheet(request.user.username)
     except Exception:
-        return redirect('covid_web:details')
+        return redirect('details')
     if country not in list(cd.country.keys()) and country != "":
         error_warning = True
     if country == "":
