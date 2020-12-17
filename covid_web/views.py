@@ -49,6 +49,7 @@ class User_info:
         self.user_country = ""
         self.user_lattitude = ""
         self.user_longtitude = ""
+        self.sheet = Sheet()
         
 
 def get_client_ip(request):
