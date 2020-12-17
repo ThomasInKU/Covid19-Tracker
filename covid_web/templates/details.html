@@ -14,7 +14,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_country}}</b> IP: <b>{{ip}}</b><br>
+                  Welcome <b>{{ user.get_username }}</b> Location: <b>{{user_country}}</b> <br>
               </li>
           </ul>
           <ul class="navbar-nav">
@@ -46,8 +46,13 @@
                     <script>
                         var first = null
                         function start(){ 
+                            if(document.getElementById("country").innerHTML == "Japan"){
+                                var data = { zoom: 5, center: {lat:35.652832, lng:139.839478}}
+                            }
+                            else{
+                                var data = { zoom: 5, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
+                            }
                             var main = document.getElementById('main')
-                            var data = { zoom: 5, center: {lat:{{user_lattitude}}, lng:{{user_longtitude}}}}
                             first = new google.maps.Map(main, data)
                             new google.maps.Marker({map: first, position:{lat:{{user_lattitude}},lng:{{user_longtitude}}}})
                         }
@@ -95,8 +100,8 @@
                                     d = dt.getDate();
                                     document.getElementById("date").innerHTML = y + "-" + m + "-" + d;
                                 </script>
-                                {% if name != '' %} <p>Country: <b>{{name}}</b> </p>{%endif%}
-                                <p> Total Confirm Cases : <span class="text-danger"><strong>{{totalconfirm}}</strong></span></p>
+                                {% if name != '' %} <p>Country: <b id="country-name">{{name}}</b> </p>{%endif%}
+                                <p> Total Confirm Cases : <span class="text-danger" id="Total-comfirm" ><strong>{{totalconfirm}}</strong></span></p>
                                 <p> New Confirm Cases : <span class="text-danger"><strong>{{newconfirm}}</strong></span></p>
                                 <p> New Deaths : <span class="text-dark"><strong>{{newdeaths}}</strong></span></p>
                                 <p> Total Deaths : <span class="text-mudarkted"><strong>{{totaldeaths}}</strong></span></p>
