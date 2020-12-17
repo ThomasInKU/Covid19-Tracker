@@ -40,28 +40,40 @@ class Sheet:
         return 10
 
     def create_new_user(self):
-        latestrow = self.next_available_row()
-        insertrow = [self.username, str(datetime.datetime.now())]
-        self.sheet.append_row(insertrow, table_range=f"A{latestrow}")
+        try:
+            latestrow = self.next_available_row()
+            insertrow = [self.username, str(datetime.datetime.now())]
+            self.sheet.append_row(insertrow, table_range=f"A{latestrow}")
+        except Exception:
+            self.create_new_user()
 
     def add_country(self, country):
-        status = False
-        row = self.find_username()
-        col = self.next_available_col(row)
-        if self.sheet.row_values(row).__contains__(country):  # already pinned
+        try:
+            status = False
+            row = self.find_username()
+            col = self.next_available_col(row)
+            if self.sheet.row_values(row).__contains__(country):  # already pinned
+                return status
+            if col < 8:
+                self.sheet.update_cell(row, col, country)
+                status = True
             return status
-        if col < 8:
-            self.sheet.update_cell(row, col, country)
-            status = True
-        return status
+        except Exception:
+            self.add_country(country)
 
     def call_countries(self):
-        row = self.find_username()
-        countries = self.sheet.row_values(row)[2:]
-        return countries
+        try:
+            row = self.find_username()
+            countries = self.sheet.row_values(row)[2:]
+            return countries
+        except Exception:
+            self.call_countries()
 
     def delete_cell(self, country):
-        row = self.find_username()
-        for i in range(3, 8):
-            if str(self.sheet.cell(row, i).value) == str(country):
-                self.sheet.update_cell(row, i, "")
+        try:
+            row = self.find_username()
+            for i in range(3, 8):
+                if str(self.sheet.cell(row, i).value) == str(country):
+                    self.sheet.update_cell(row, i, "")
+        except Exception:
+            self.delete_cell(country)
