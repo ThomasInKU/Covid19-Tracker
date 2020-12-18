@@ -86,9 +86,10 @@ Every pull requests are welcome. Please open an issue first to discuss what you 
 * [Iteration 7 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/7)
 
 ## Project Documents
-* [Google Slide of the Iteration2(Demo)](https://docs.google.com/presentation/d/14qMV3SfXerS6ZqlIU6QqADaq-o9OB24neuZzF2Wg8W4/edit?usp=sharing)
-* [Google Slide of the Iteration3(Demo)](https://docs.google.com/presentation/d/1644cAhMw_56MGKahJRFheus9vtq5G2nMFGxjAxFY4lk/edit?usp=sharing)
-* [Google Slide of the Iteration4(Demo)](https://docs.google.com/presentation/d/1q7hvfviI6Zbfiea9Jx7KZqt6942ZJalaiTW8-VWJNZc/edit?usp=sharing)
+* [Project Presentation Slide](https://docs.google.com/presentation/d/12TrLN7DaFByj_W0nC0guYkGCF7eRGC-enF77FvVeLyc/edit?usp=sharing)
+* [Google Slide of the Iteration2(Demo1)](https://docs.google.com/presentation/d/14qMV3SfXerS6ZqlIU6QqADaq-o9OB24neuZzF2Wg8W4/edit?usp=sharing)
+* [Google Slide of the Iteration3(Demo2)](https://docs.google.com/presentation/d/1644cAhMw_56MGKahJRFheus9vtq5G2nMFGxjAxFY4lk/edit?usp=sharing)
+* [Google Slide of the Iteration4(Demo3)](https://docs.google.com/presentation/d/1q7hvfviI6Zbfiea9Jx7KZqt6942ZJalaiTW8-VWJNZc/edit?usp=sharing)
 * [Google Doc of CovidTracker Bot](https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing)
 * [Code Review Checklist](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Checklist)
 * [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)  
