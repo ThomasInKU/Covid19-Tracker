@@ -254,7 +254,7 @@ class CountryCovidData:
 
 
 class WorldCovidData:
-    """Class for tranfer the specific data from the APIweb (Json)."""
+    """Class for transfer the specific data from the API web (Json)."""
 
     def __init__(self):
         """Get data from API web after initialize object."""
@@ -269,19 +269,22 @@ class WorldCovidData:
         """Get the result data by the case name."""
         return self.world_today[case]
 
+
 class ThailandCovidData:
-    
+    """Class for transfer thailand data from the API web (Json)."""
+
     def __init__(self):
+        """Get data from API web after initialize object."""
         self.thailand = self.get_data()
-        
+
     def get_data(self):
         """Get the data in Json from the API web."""
         world_covid_api = "https://covid19.th-stat.com/api/open/cases/sum"
         return requests.get(world_covid_api).json()
-    
+
     def get_result(self, province):
         """Get the result data by the case name."""
         try:
             return int(self.thailand["Province"][province])
-        except:
+        except Exception:
             return 0
