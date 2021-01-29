@@ -1,6 +1,12 @@
 # Covid19-Tracker
 [![Build Status](https://travis-ci.com/lisbono2001/Covid19-Tracker.svg?branch=master)](https://travis-ci.com/lisbono2001/Covid19-Tracker) 
 [![codecov](https://codecov.io/gh/lisbono2001/Covid19-Tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/lisbono2001/Covid19-Tracker)
+<a href="https://github.com/lisbono2001/Covid19-Tracker/issues">
+   <img alt="Issues" src="https://img.shields.io/github/issues/lisbono2001/Covid19-Tracker?color=0088ff" />
+</a>
+<a href="https://github.com/lisbono2001/github-readme-stats/pulls">
+   <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/lisbono2001/Covid19-Tracker?color=0088ff" />
+</a>
 ## URL of the web application
 [See our URL of the web application](https://covidtracker-isp.herokuapp.com/)    
 
