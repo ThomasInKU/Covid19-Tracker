@@ -70,6 +70,11 @@ def get_location_form_ip(ip):
     response.raise_for_status()
     return response.json()
 
+def create_sheet(request):
+    try:
+        return Sheet(request.user.username)
+    except Exception:
+        create_sheet(request)
 
 def create_sheet(request):
     """Create new spreadsheet."""
@@ -143,7 +148,6 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
-
 
 @login_required()
 def prevent(request):

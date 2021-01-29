@@ -62,7 +62,7 @@ class Sheet:
             status = False
             row = self.find_username()
             col = self.next_available_col(row)
-            if self.sheet.row_values(row).__contains__(country):
+            if self.sheet.row_values(row).__contains__(country):  # already pinned
                 return status
             if col < 8:
                 self.sheet.update_cell(row, col, country)

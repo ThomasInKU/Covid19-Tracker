@@ -1,6 +1,12 @@
 # Covid19-Tracker
 [![Build Status](https://travis-ci.com/lisbono2001/Covid19-Tracker.svg?branch=master)](https://travis-ci.com/lisbono2001/Covid19-Tracker) 
 [![codecov](https://codecov.io/gh/lisbono2001/Covid19-Tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/lisbono2001/Covid19-Tracker)
+<a href="https://github.com/lisbono2001/Covid19-Tracker/issues">
+   <img alt="Issues" src="https://img.shields.io/github/issues/lisbono2001/Covid19-Tracker?color=0088ff" />
+</a>
+<a href="https://github.com/lisbono2001/github-readme-stats/pulls">
+   <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/lisbono2001/Covid19-Tracker?color=0088ff" />
+</a>
 ## URL of the web application
 [See our URL of the web application](https://covidtracker-isp.herokuapp.com/)    
 
@@ -93,7 +99,6 @@ Every pull requests are welcome. Please open an issue first to discuss what you 
 * [Google Doc of CovidTracker Bot](https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing)
 * [Code Review Checklist](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Checklist)
 * [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)  
-* [Web link](https://covidtracker-isp.herokuapp.com/)
   For deeper detail, be sure to check out [the wiki documentation](https://github.com/lisbono2001/Covid19-Tracker/wiki).
 
 ### License
