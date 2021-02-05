@@ -68,22 +68,22 @@ Every pull requests are welcome. Please open an issue first to discuss what you 
 ## Project Iterations  
 
 ### Iterations Plans
-* [Iteration 1 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-1-plan)
-* [Iteration 2 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-2-plan)
-* [Iteration 3 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-3-plan)
-* [Iteration 4 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-4-plan)
-* [Iteration 5 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-5-plan)
-* [Iteration 6 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-6-plan)
-* [Iteration 7 Plan](https://github.com/lisbono2001/Covid19-Tracker/wiki/Iteration-7-plan)
+* [Iteration 1 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-1-plan)
+* [Iteration 2 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-2-plan)
+* [Iteration 3 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-3-plan)
+* [Iteration 4 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-4-plan)
+* [Iteration 5 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-5-plan)
+* [Iteration 6 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-6-plan)
+* [Iteration 7 Plan](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Iteration-7-plan)
 
 ### Project TaskBoards    
-* [Iteration 1 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/1)    
-* [Iteration 2 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/2)
-* [Iteration 3 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/3)
-* [Iteration 4 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/4)
-* [Iteration 5 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/5)
-* [Iteration 6 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/6)
-* [Iteration 7 TaskBoards](https://github.com/lisbono2001/Covid19-Tracker/projects/7)
+* [Iteration 1 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/1)    
+* [Iteration 2 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/2)
+* [Iteration 3 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/3)
+* [Iteration 4 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/4)
+* [Iteration 5 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/5)
+* [Iteration 6 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/6)
+* [Iteration 7 TaskBoards](https://github.com/ThomasInKU/Covid19-Tracker/projects/7)
 
 ## Project Documents
 * [Project Presentation Slide](https://docs.google.com/presentation/d/12TrLN7DaFByj_W0nC0guYkGCF7eRGC-enF77FvVeLyc/edit?usp=sharing)
@@ -91,10 +91,10 @@ Every pull requests are welcome. Please open an issue first to discuss what you 
 * [Google Slide of the Iteration3(Demo2)](https://docs.google.com/presentation/d/1644cAhMw_56MGKahJRFheus9vtq5G2nMFGxjAxFY4lk/edit?usp=sharing)
 * [Google Slide of the Iteration4(Demo3)](https://docs.google.com/presentation/d/1q7hvfviI6Zbfiea9Jx7KZqt6942ZJalaiTW8-VWJNZc/edit?usp=sharing)
 * [Google Doc of CovidTracker Bot](https://docs.google.com/document/d/1yZ44ohLjBxY3xdxLnVfxUchmPmGIvRqF8OUgX0xgOpg/edit?usp=sharing)
-* [Code Review Checklist](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Checklist)
-* [Code Review Procedure](https://github.com/lisbono2001/Covid19-Tracker/wiki/Code-Review-Procedure)  
+* [Code Review Checklist](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Code-Review-Checklist)
+* [Code Review Procedure](https://github.com/ThomasInKU/Covid19-Tracker/wiki/Code-Review-Procedure)  
 * [Web link](https://covidtracker-isp.herokuapp.com/)
-  For deeper detail, be sure to check out [the wiki documentation](https://github.com/lisbono2001/Covid19-Tracker/wiki).
+  For deeper detail, be sure to check out [the wiki documentation](https://github.com/ThomasInKU/Covid19-Tracker/wiki).
 
 ### License
 [GNU](LICENSE.md)  
