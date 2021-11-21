@@ -49,14 +49,13 @@ def get_client_ip(request):
 def get_location_form_ip(ip, request):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = request.get(url)
-    response.raise_for_status()
+    print (response)
     return response.json()
 
 @login_required()
 def details(request):
     """Get data from user and show data from that country."""
     cd = CountryCovidData()
-    user_country = get_location_form_ip(get_client_ip(request),request)
     country = str(request.GET.get('country', ''))
     error_warning = False
     if country not in list(cd.country.keys()) and country != "":
@@ -73,7 +72,6 @@ def details(request):
             "{:,}".format(cd.get_result("todayRecovered", country)),
         'active': "{:,}".format(cd.get_result("active", country)),
         'error_warning': error_warning,
-        'user_country': user_country,
     }
 
     return render(request, 'details.html', context=context)
