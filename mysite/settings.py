@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,11 +21,50 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '7_ieibc((3ztfw7%f(v8d^_lp22_&b=-h=@*+=1hobq@b4f6ib'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["covidtracker-isp.herokuapp.com", '127.0.0.1']
 
 # Application definition
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': ('%(asctime)s [%(process)d] [%(levelname)s] '
+                       'pathname=%(pathname)s lineno=%(lineno)s '
+                       'funcname=%(funcName)s %(message)s'),
+            'datefmt': '%Y-%m-%d %H:%M:%S'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        }
+    },
+    'handlers': {
+        'null': {
+            'level': 'DEBUG',
+            'class': 'logging.NullHandler',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -71,10 +109,9 @@ SOCIAL_AUTH_PIPELINE = (  # new
 SOCIAL_AUTH_STRATEGY = 'social_django.strategy.DjangoStrategy'
 SOCIAL_AUTH_STORAGE = 'social_django.models.DjangoStorage'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = \
-    '316802718969-abruq8ks60luvh5q1uftlk018iu5kk5g.' \
-    'apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'HfhwDcXhbyGhWMtHcEiIeFOv'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '316802718969-utnv1o2ivrii9s0r98q' \
+                                '8ahptm9eoan41.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'KXdt3bjY93q_4jVjdLB6Aw7M'
 
 SOCIAL_AUTH_GITHUB_KEY = '1e4186e58dee194f8822'
 SOCIAL_AUTH_GITHUB_SECRET = '914f07f8cda7b923489a489b4dd7ac29f1688723'
@@ -126,6 +163,12 @@ DATABASES = {
     }
 }
 
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -167,6 +210,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/country/'
 LOGOUT_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())

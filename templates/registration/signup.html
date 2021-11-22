@@ -8,16 +8,18 @@
   </style>
 {% endblock %}
 {% block content %}
-<h2>Register</h2>
-<form method="POST">
-  {% csrf_token %}
-  <table>
-    {{ form.as_table }}
-    <tr>
-      <td colspan="2">
-        <button type="submit">Register</button>
-      </td>
-    </tr>
-  </table>
-</form>
+  <div class="container p-5">
+    <h1 class="text-warning"><b>Register</b></h1>
+    <form method="POST">
+      {% csrf_token %}
+      <table>
+        {{ form.as_table }}
+        <tr>
+          <td colspan="2" class="pt-5">
+            <button class="btn btn-outline-success" type="submit">Register</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 {% endblock %}

@@ -3,9 +3,12 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, redirect
 from covid_web.covid_data import CountryCovidData, WorldCovidData
+from covid_web.covid_data import ThailandCovidData
 from covid_web.forms import SignUpForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
+import requests
+from covid_web.sheets import Sheet
 
 
 class MyAuthForm(AuthenticationForm):
@@ -37,7 +40,20 @@ class MyLoginView(auth_views.LoginView):
         }
         return context
 
+
+class User_info:
+    """Class for initialize values of detail page."""
+
+    def __init__(self):
+        """Initialize for user info."""
+        self.user_ip = ""
+        self.user_country = ""
+        self.user_lattitude = ""
+        self.user_longtitude = ""
+
+
 def get_client_ip(request):
+    """Get user ip."""
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
@@ -45,12 +61,29 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-
 def get_location_form_ip(ip, request):
     url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
     response = request.get(url)
     print (response)
     return response.json()
+
+def create_sheet(request):
+    try:
+        return Sheet(request.user.username)
+    except Exception:
+        create_sheet(request)
+
+def create_sheet(request):
+    """Create new spreadsheet."""
+    try:
+        return Sheet(request.user.username)
+    except Exception:
+        create_sheet(request)
+
+
+cd = CountryCovidData()
+uf = User_info()
+
 
 @login_required()
 def details(request):
@@ -91,14 +124,22 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
+@login_required()
 def prevent(request):
     """Render prevent page."""
     context = {}
     return render(request, 'prevent.html', context=context)
 
+
+td = ThailandCovidData()
+
+
+@login_required()
 def map(request):
     """Render prevent page."""
-    cd = CountryCovidData()
-    country = str(request.GET.get('country', ''))
-    context = {'totalconfirm': "{:,}".format(cd.get_result("cases", country)),}
+    province = str(request.GET.get('province', ''))
+    context = {'totalconfirm': "{:,}".format(td.get_result(province)),
+               'province': province,
+               'location': uf.user_country,
+               'ip': uf.user_ip}
     return render(request, 'th_map.html', context=context)
