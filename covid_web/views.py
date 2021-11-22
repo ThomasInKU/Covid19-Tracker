@@ -61,13 +61,10 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-
-def get_location_form_ip(ip):
-    """Get location from user ip."""
-    url = f"http://api.ipstack.com/" \
-          f"{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
-    response = requests.get(url)
-    response.raise_for_status()
+def get_location_form_ip(ip, request):
+    url = f"http://api.ipstack.com/{ip}?access_key={'99c3ea4ed446e04a08202b66f6970772'}"
+    response = request.get(url)
+    print (response)
     return response.json()
 
 def create_sheet(request):
@@ -91,48 +88,26 @@ uf = User_info()
 @login_required()
 def details(request):
     """Get data from user and show data from that country."""
-    try:
-        country = str(request.GET.get('country', ''))
-        error_warning = False
-        sheet = create_sheet(request)
-        if country not in list(cd.country.keys()) and country != "":
-            error_warning = True
-        if country == "":
-            # first load of the web page
-            uf.user_ip = get_client_ip(request)
-            uf.user_lattitude = get_location_form_ip(uf.user_ip)["latitude"]
-            uf.user_longtitude = get_location_form_ip(uf.user_ip)["longitude"]
-            uf.user_country = get_location_form_ip(uf.user_ip)["country_name"]
-            country = uf.user_country
-        if request.method == 'POST' and 'add_country' in request.POST:
-            sheet.add_country(country)
-        if request.method == 'GET' and 'delete_country' in request.GET:
-            area = request.GET.get('area', '')
-            sheet.delete_cell(area)
-        if request.method == 'GET' and 'jump' in request.GET:
-            country = request.GET.get('area', '')
-        context = {
-            'name': country,
-            'country_name': list(cd.country.keys()),
-            'totalconfirm': "{:,}".format(cd.get_result("cases", country)),
-            'newconfirm': "{:,}".format(cd.get_result("todayCases", country)),
-            'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
-            'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
-            'recovered': "{:,}".format(cd.get_result("recovered", country)),
-            'todayRecovered': "{:,}".format(cd.get_result("todayRecovered", country)),
-            'active': "{:,}".format(cd.get_result("active", country)),
-            'error_warning': error_warning,
-            'user_country': uf.user_country,
-            'user_lattitude': uf.user_lattitude,
-            'user_longtitude': uf.user_longtitude,
-            'ip': uf.user_ip,
-            'pinnedarea': sheet.call_countries(),
-        }
-        return render(request, 'details.html', context=context)
-    except Exception:
-        """Render traffic page"""
-        context = {}
-        return render(request, 'traffic.html', context=context)
+    cd = CountryCovidData()
+    country = str(request.GET.get('country', ''))
+    error_warning = False
+    if country not in list(cd.country.keys()) and country != "":
+        error_warning = True
+    context = {
+        'name': country,
+        'country_name': list(cd.country.keys()),
+        'totalconfirm': "{:,}".format(cd.get_result("cases", country)),
+        'newconfirm': "{:,}".format(cd.get_result("todayCases", country)),
+        'totaldeaths': "{:,}".format(cd.get_result("deaths", country)),
+        'newdeaths': "{:,}".format(cd.get_result("todayDeaths", country)),
+        'recovered': "{:,}".format(cd.get_result("recovered", country)),
+        'todayRecovered':
+            "{:,}".format(cd.get_result("todayRecovered", country)),
+        'active': "{:,}".format(cd.get_result("active", country)),
+        'error_warning': error_warning,
+    }
+
+    return render(request, 'details.html', context=context)
 
 
 def signup(request):
