@@ -80,7 +80,7 @@ pydocstyle==5.1.1
 pyflakes==2.2.0
 pygame==1.9.6
 Pygments==2.4.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.3.1
 pyrsistent==0.15.2
 pyserial==3.5
