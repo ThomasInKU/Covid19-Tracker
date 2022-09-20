@@ -111,7 +111,7 @@ traitlets==4.3.2
 typed-ast==1.4.0
 untokenize==0.1.1
 uritemplate==3.0.1
-urllib3==1.25.11
+urllib3==1.26.5
 virtualenv==20.2.1
 wcwidth==0.1.7
 webencodings==0.5.1
